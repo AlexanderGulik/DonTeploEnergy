@@ -1,25 +1,38 @@
+/* src/components/UI/Header/Header.module.css */
+
+/* Базовые стили хедера - оптимизированы для всех устройств */
 .Header {
   width: 100%;
   background-color: #ffffff;
-  padding: 16px 0;
+  padding: 12px 16px;
   box-sizing: border-box;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 1000;
   border-bottom: 1px solid #e2e8f0;
-
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Для десктопов возвращаем sticky */
+@media (min-width: 769px) {
+  .Header {
+    position: sticky;
+    top: 0;
+    padding: 16px 0;
+  }
 }
 
 .HeaderTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 16px;
 }
 
 /* Название компании */
 .Brand {
   transition: opacity 0.2s;
+  flex-shrink: 0;
+  cursor: pointer;
 }
 
 .Brand:hover {
@@ -27,20 +40,259 @@
 }
 
 .BrandTitle {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 700;
   color: #1a365d;
   margin: 0;
   letter-spacing: -0.5px;
 }
 
-/* Навигация */
+@media (min-width: 480px) {
+  .BrandTitle {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .BrandTitle {
+    font-size: 24px;
+  }
+}
+
+/* Десктопная навигация */
 .Nav {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 32px;
 }
 
+@media (min-width: 769px) {
+  .Nav {
+    display: flex;
+  }
+}
+
+/* Кнопка мобильного меню */
+.MobileMenuButton {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 24px;
+  color: #1a365d;
+  flex-shrink: 0;
+}
+
+@media (min-width: 769px) {
+  .MobileMenuButton {
+    display: none;
+  }
+}
+
+/* Оверлей мобильного меню */
+.MobileNavOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1001;
+}
+
+.MobileNavOverlay.open {
+  display: block;
+}
+
+/* Мобильное меню */
+.MobileNav {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100%;
+  background-color: white;
+  z-index: 1002;
+  padding: 20px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.MobileNav.open {
+  right: 0;
+}
+
+.MobileNavHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 16px;
+}
+
+.MobileBrandTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.MobileNavClose {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #1a365d;
+  padding: 8px;
+}
+
+.MobileNavLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  text-decoration: none;
+  color: #2d3748;
+  font-weight: 500;
+  font-size: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s;
+}
+
+.MobileNavLink:hover {
+  color: #1a365d;
+  padding-left: 8px;
+}
+
+/* Мобильные выпадающие меню */
+.MobileDropdown {
+  margin: 4px 0;
+}
+
+.MobileDropdownTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: #2d3748;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s;
+}
+
+.MobileDropdownTitle:hover {
+  color: #1a365d;
+}
+
+.ArrowOpen {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.ArrowClosed {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.MobileDropdownContent {
+  display: none;
+  padding-left: 16px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.MobileDropdownContent.open {
+  display: block;
+}
+
+.MobileDropdownLink {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #2d3748;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.MobileDropdownLink:hover {
+  color: #1a365d;
+  padding-left: 8px;
+}
+
+.MobileDropdownLink img {
+  width: 20px;
+  height: 20px;
+}
+
+.MobileIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Мобильные кнопки */
+.MobileLoginButton {
+  background: linear-gradient(135deg, #1a365d 0%, #2b4c7c 100%);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  margin-top: 16px;
+  transition: all 0.2s;
+}
+
+.MobileLoginButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.3);
+}
+
+.MobileLogoutButton {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 12px 0;
+  background: transparent;
+  border: none;
+  color: #e53e3e;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  transition: all 0.2s;
+}
+
+.MobileLogoutButton:hover {
+  color: #c53030;
+  padding-left: 8px;
+}
+
+/* Десктопные стили навигации */
+@media (min-width: 769px) {
+  .MobileNavOverlay,
+  .MobileNav {
+    display: none;
+  }
+}
+
+/* Стили десктопной навигации */
 .NavLink {
   text-decoration: none;
   color: #2d3748;
@@ -55,7 +307,7 @@
   color: #1a365d;
 }
 
-/* Выпадающее меню */
+/* Выпадающее меню десктоп */
 .Dropdown {
   position: relative;
   display: inline-block;
@@ -95,6 +347,7 @@
 .DropdownLink {
   display: flex;
   gap: 10px;
+  align-items: center;
   padding: 12px 20px;
   text-decoration: none;
   color: #2d3748;
@@ -102,6 +355,7 @@
   transition: all 0.2s;
   white-space: nowrap;
 }
+
 .DropdownLink img {
   width: 20px;
   height: 20px;
@@ -113,7 +367,7 @@
   padding-left: 24px;
 }
 
-/* Кнопка входа */
+/* Кнопка входа десктоп */
 .LoginButton {
   background: linear-gradient(135deg, #1a365d 0%, #2b4c7c 100%);
   color: white;
@@ -134,7 +388,7 @@
   box-shadow: 0 8px 16px rgba(26, 54, 93, 0.3);
 }
 
-/* Меню пользователя */
+/* Меню пользователя десктоп */
 .UserMenuWrapper {
   position: relative;
 }
@@ -206,10 +460,13 @@
 .UserDropdown img {
   width: 15px;
   height: 15px;
+  margin-right: 8px;
 }
 
 .UserDropdownLink {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 12px 20px;
   text-decoration: none;
   color: #2d3748;
@@ -230,7 +487,9 @@
 }
 
 .UserDropdownButton {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   width: 100%;
   text-align: left;
   padding: 12px 20px;
@@ -249,102 +508,33 @@
 
 /* Заголовок страницы */
 .PageTitleWrapper {
-  margin-top: 24px;
+  margin-top: 16px;
   padding-bottom: 8px;
   border-bottom: 2px solid #e2e8f0;
 }
 
+@media (min-width: 768px) {
+  .PageTitleWrapper {
+    margin-top: 24px;
+  }
+}
+
 .PageTitle {
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 600;
   color: #1a202c;
   margin: 0;
 }
 
-/* Адаптивность */
-@media (max-width: 1024px) {
+@media (min-width: 768px) {
+  .PageTitle {
+    font-size: 32px;
+  }
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 1024px) and (min-width: 769px) {
   .Nav {
     gap: 20px;
-  }
-  
-  .BrandTitle {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .Header {
-    padding: 12px 0;
-  }
-  
-  .HeaderTop {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
-  .Brand {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .BrandTitle {
-    font-size: 18px;
-  }
-  
-  .Nav {
-    width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  
-  .NavLink {
-    font-size: 14px;
-  }
-  
-  .LoginButton {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-  
-  .UserButton {
-    padding: 6px 12px;
-  }
-  
-  .UserName {
-    max-width: 80px;
-  }
-  
-  .PageTitle {
-    font-size: 24px;
-  }
-  
-  .DropdownContent {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .UserDropdown {
-    right: -50px;
-  }
-}
-
-@media (max-width: 480px) {
-  .Nav {
-    gap: 12px;
-  }
-  
-  .DropdownContent {
-    min-width: 200px;
-  }
-  
-  .DropdownLink {
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-  
-  .UserDropdown {
-    right: -20px;
-    min-width: 200px;
   }
 }

@@ -1,5 +1,5 @@
 // src/components/UI/Header/Header.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthContext';
 import styles from './Header.module.css';
@@ -16,11 +16,50 @@ const Header = ({ title = 'Главная' }) => {
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+
+  // Закрываем меню при ресайзе окна
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Блокируем скролл при открытом мобильном меню
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const handleLogout = () => {
     logout();
     setShowUserMenu(false);
+    setIsMobileMenuOpen(false);
     navigate('/');
+  };
+
+  const toggleMobileDropdown = (dropdownName) => {
+    if (openMobileDropdown === dropdownName) {
+      setOpenMobileDropdown(null);
+    } else {
+      setOpenMobileDropdown(dropdownName);
+    }
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setOpenMobileDropdown(null);
   };
 
   return (
@@ -30,6 +69,16 @@ const Header = ({ title = 'Главная' }) => {
           <h1 className={styles.BrandTitle}>Донбасс Тепло Энерго</h1>
         </div>
 
+        {/* Кнопка бургер-меню */}
+        <button 
+          className={styles.MobileMenuButton}
+          onClick={() => setIsMobileMenuOpen(true)}
+          aria-label="Меню"
+        >
+          ☰
+        </button>
+
+        {/* Десктопная навигация */}
         <nav className={styles.Nav}>
           <Link to="/" className={styles.NavLink}>Главная</Link>
           
@@ -43,7 +92,7 @@ const Header = ({ title = 'Главная' }) => {
                 <img src={waterIcon} alt="water"/> Нет горячей воды
               </Link>
               <Link to="/forms/emergency" className={styles.DropdownLink}>
-                <img src = {emergencyIcon} alt="emergency"/> Аварийная заявка
+                <img src={emergencyIcon} alt="emergency"/> Аварийная заявка
               </Link>
             </div>
           </div>
@@ -52,10 +101,10 @@ const Header = ({ title = 'Главная' }) => {
             <span className={styles.NavLink}>Информация ▼</span>
             <div className={styles.DropdownContent}>
               <Link to="/info/tariffs" className={styles.DropdownLink}>
-                <img src={tariffIcon}/> Тарифы
+                <img src={tariffIcon} alt="tariff"/> Тарифы
               </Link>
               <Link to="/info/outages" className={styles.DropdownLink}>
-                <img src={outagesIcon}/> Отключения
+                <img src={outagesIcon} alt="outages"/> Отключения
               </Link>
             </div>
           </div>
@@ -84,14 +133,14 @@ const Header = ({ title = 'Главная' }) => {
                     className={styles.UserDropdownLink}
                     onClick={() => setShowUserMenu(false)}
                   >
-                    <img src = {profileIcon} /> Личный кабинет
+                    <img src={profileIcon} alt="profile"/> Личный кабинет
                   </Link>
                   <div className={styles.UserDropdownDivider}></div>
                   <button 
                     className={styles.UserDropdownButton}
                     onClick={handleLogout}
                   >
-                    <img src = {exitIcon} /> Выйти
+                    <img src={exitIcon} alt="exit"/> Выйти
                   </button>
                 </div>
               )}
@@ -104,6 +153,78 @@ const Header = ({ title = 'Главная' }) => {
         </nav>
       </div>
 
+      {/* Мобильное меню */}
+      <div className={`${styles.MobileNavOverlay} ${isMobileMenuOpen ? styles.open : ''}`} onClick={closeMobileMenu}></div>
+      <div className={`${styles.MobileNav} ${isMobileMenuOpen ? styles.open : ''}`}>
+        <div className={styles.MobileNavHeader}>
+          <span className={styles.MobileBrandTitle}>Меню</span>
+          <button className={styles.MobileNavClose} onClick={closeMobileMenu} aria-label="Закрыть">
+            ✕
+          </button>
+        </div>
+        
+        <Link to="/" className={styles.MobileNavLink} onClick={closeMobileMenu}>Главная</Link>
+        
+        {/* Мобильное выпадающее меню - Заявки */}
+        <div className={styles.MobileDropdown}>
+          <div 
+            className={styles.MobileDropdownTitle}
+            onClick={() => toggleMobileDropdown('requests')}
+          >
+            <span>Заявки</span>
+            <span className={openMobileDropdown === 'requests' ? styles.ArrowOpen : styles.ArrowClosed}>▼</span>
+          </div>
+          <div className={`${styles.MobileDropdownContent} ${openMobileDropdown === 'requests' ? styles.open : ''}`}>
+            <Link to="/forms/no-heating" className={styles.MobileDropdownLink} onClick={closeMobileMenu}>
+              <img src={fireIcon} alt="fire"/> Нет отопления
+            </Link>
+            <Link to="/forms/no-hot-water" className={styles.MobileDropdownLink} onClick={closeMobileMenu}>
+              <img src={waterIcon} alt="water"/> Нет горячей воды
+            </Link>
+            <Link to="/forms/emergency" className={styles.MobileDropdownLink} onClick={closeMobileMenu}>
+              <img src={emergencyIcon} alt="emergency"/> Аварийная заявка
+            </Link>
+          </div>
+        </div>
+        
+        {/* Мобильное выпадающее меню - Информация */}
+        <div className={styles.MobileDropdown}>
+          <div 
+            className={styles.MobileDropdownTitle}
+            onClick={() => toggleMobileDropdown('info')}
+          >
+            <span>Информация</span>
+            <span className={openMobileDropdown === 'info' ? styles.ArrowOpen : styles.ArrowClosed}>▼</span>
+          </div>
+          <div className={`${styles.MobileDropdownContent} ${openMobileDropdown === 'info' ? styles.open : ''}`}>
+            <Link to="/info/tariffs" className={styles.MobileDropdownLink} onClick={closeMobileMenu}>
+              <img src={tariffIcon} alt="tariff"/> Тарифы
+            </Link>
+            <Link to="/info/outages" className={styles.MobileDropdownLink} onClick={closeMobileMenu}>
+              <img src={outagesIcon} alt="outages"/> Отключения
+            </Link>
+          </div>
+        </div>
+        
+        <Link to="/faq" className={styles.MobileNavLink} onClick={closeMobileMenu}>Вопросы и ответы</Link>
+        
+        {isAuthenticated ? (
+          <>
+            <Link to="/profile" className={styles.MobileNavLink} onClick={closeMobileMenu}>
+              <img src={profileIcon} alt="profile" className={styles.MobileIcon}/> Личный кабинет
+            </Link>
+            <button className={styles.MobileLogoutButton} onClick={handleLogout}>
+              <img src={exitIcon} alt="exit" className={styles.MobileIcon}/> Выйти
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className={styles.MobileLoginButton} onClick={closeMobileMenu}>
+            Войти
+          </Link>
+        )}
+      </div>
+
+      {/* Заголовок страницы */}
       {title !== 'Главная' && (
         <div className={styles.PageTitleWrapper}>
           <h2 className={styles.PageTitle}>{title}</h2>
