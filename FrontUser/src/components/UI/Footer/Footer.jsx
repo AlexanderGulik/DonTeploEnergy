@@ -10,7 +10,7 @@ const Footer = () => {
         <div className={styles.LogoSection}>
           <img src={logo} alt="Logo" className={styles.Logo} />
           <p className={styles.Copyright}>
-            © 2025 Донбасс Тепло Энерго.<br />Все права защищены.
+            © 2015 - 2026  Донбасс Тепло Энерго.<br />Все права защищены.
           </p>
         </div>
         

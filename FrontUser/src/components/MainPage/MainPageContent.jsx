@@ -312,14 +312,14 @@ const MainPageContent = () => {
             <div className={styles.ContactIcon}><img src={phoneIcon} alt="phone" /></div>
             <div>
               <h4>Единый контакт-центр</h4>
-              <p>8 (800) 123-45-67 • info@donbass-teplo.ru</p>
+              <p>7(856) 304-53-3 • donbassteploenergo@mail.ru</p>
             </div>
           </div>
           <div className={styles.ContactInfo}>
             <div className={styles.ContactIcon}><img src={locationIcon} alt="location" /></div>
             <div>
               <h4>Главный офис</h4>
-              <p>г. Донецк, ул. Теплая, 15, с 8:00 до 20:00</p>
+              <p>ДНР, 283086, г. Донецк, ул. Донецкая, 38.</p>
             </div>
           </div>
         </div>
