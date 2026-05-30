@@ -1,0 +1,592 @@
+.Main {
+  flex: 1;
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* ========== Hero секция ========== */
+.HeroSection {
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  border-radius: 24px;
+  padding: 48px 40px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.HeroContent {
+  max-width: 800px;
+}
+
+.HeroTitle {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+
+.TitleIcon img {
+  width: 50px;
+}
+
+.HeroSubtitle {
+  font-size: 18px;
+  opacity: 0.95;
+  margin: 0;
+}
+
+/* ========== Контактная секция ========== */
+.ContactSection {
+  margin-bottom: 40px;
+}
+
+.ContactGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ContactCard {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  gap: 16px;
+  transition: transform 0.2s;
+}
+
+.ContactCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.ContactIcon {
+  font-size: 36px;
+  background: #f7fafc;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ContactIcon img {
+  width: 40px;
+  height: 40px;
+}
+
+
+.ContactInfo {
+  flex: 1;
+}
+
+.ContactInfo h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 4px 0;
+}
+
+.ContactInfo p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0 0 12px 0;
+}
+
+.ContactButton {
+  padding: 8px 16px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ContactButton:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.WorkHours {
+  font-size: 13px;
+  color: #94a3b8;
+  display: block;
+  margin-top: 8px;
+}
+
+/* ========== Поиск и фильтры ========== */
+.SearchSection {
+  margin-bottom: 32px;
+}
+
+.SearchWrapper {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.SearchIcon img {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  width: 25px;
+  height: 25px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.SearchInput {
+  width: 100%;
+  padding: 18px 60px 18px 56px;
+  font-size: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.SearchInput:focus {
+  outline: none;
+  border-color: #9b59b6;
+  box-shadow: 0 0 0 4px rgba(155, 89, 182, 0.1);
+}
+
+.ClearButton {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e2e8f0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.ClearButton:hover {
+  background: #cbd5e0;
+  color: #1a202c;
+}
+
+.FiltersBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.Categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.CategoryButton {
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.CategoryButton:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.CategoryButton.Active {
+  background: #9b59b6;
+  border-color: #9b59b6;
+  color: white;
+}
+
+.Actions {
+  display: flex;
+  gap: 12px;
+}
+
+.Actions img{
+  width: 15px;
+}
+
+.ActionButton {
+  padding: 8px 16px;
+  display: flex;
+  gap: 10px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ActionButton:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.ResultsInfo {
+  font-size: 14px;
+  color: #64748b;
+  padding: 8px 0;
+}
+
+/* ========== FAQ Аккордеон ========== */
+.FAQSection {
+  margin-bottom: 40px;
+}
+
+.Accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.Section {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.Section:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.SectionHeader {
+  width: 100%;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.SectionHeader:hover {
+  background: #fafbfc;
+}
+
+.QuestionWrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.CategoryBadge {
+  padding: 4px 12px;
+  background: #f3e8ff;
+  color: #9b59b6;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.Question {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+  line-height: 1.5;
+}
+
+.Arrow {
+  font-size: 24px;
+  color: #9b59b6;
+  font-weight: 300;
+  transition: transform 0.3s;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.Answer {
+  padding: 0 24px 24px;
+  border-top: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.AnswerContent {
+  padding: 20px 0;
+  font-size: 15px;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+.AnswerContent p {
+  margin: 0 0 16px 0;
+}
+
+.AnswerContent p:last-child {
+  margin-bottom: 0;
+}
+
+.Highlight {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.RelatedLinks {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.RelatedLinks strong {
+  display: block;
+  font-size: 14px;
+  color: #1a202c;
+  margin-bottom: 12px;
+}
+
+.RelatedLinks ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.RelatedLinks li {
+  margin-bottom: 8px;
+}
+
+.RelatedLinks a {
+  color: #9b59b6;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.RelatedLinks a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Empty State ========== */
+.EmptyState {
+  text-align: center;
+  padding: 80px 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.EmptyIcon img{
+  width: 100px;
+  height: 100px;
+  opacity: 0.5;
+}
+
+.EmptyState h3 {
+  font-size: 20px;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.EmptyState p {
+  color: #64748b;
+  margin: 0 0 20px 0;
+}
+
+.ResetButton {
+  padding: 12px 24px;
+  background: #9b59b6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ResetButton:hover {
+  background: #8e44ad;
+  transform: translateY(-2px);
+}
+
+/* ========== CTA секция ========== */
+.CTASection {
+  margin-top: 40px;
+}
+
+.CTACard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24px;
+  padding: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.CTAContent h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+.CTAContent img {
+  height: 20px;
+  width: 20px;
+}
+
+.CTAContent p {
+  font-size: 18px;
+  opacity: 0.95;
+  margin: 0 0 32px 0;
+}
+
+.CTAButtons {
+  display: flex;
+  gap: 16px;
+}
+
+.PrimaryCTA {
+  gap: 10px;
+  display: flex;
+  padding: 19px 32px;
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.PrimaryCTA:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.SecondaryCTA {
+  gap: 10px;
+  display: flex;
+  padding: 19px 32px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+}
+
+.SecondaryCTA:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.CTAIllustration img{
+  width: 200px;
+  opacity: 0.3;
+}
+
+/* ========== Адаптивность ========== */
+@media (max-width: 1024px) {
+  .ContactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .Main {
+    padding: 20px 0;
+  }
+
+  .HeroSection {
+    padding: 32px 24px;
+  }
+
+  .HeroTitle {
+    font-size: 32px;
+  }
+
+  .ContactGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .FiltersBar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .Categories {
+    justify-content: center;
+  }
+
+  .Actions {
+    justify-content: center;
+  }
+
+  .QuestionWrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .CTACard {
+    flex-direction: column;
+    text-align: center;
+    padding: 32px 24px;
+  }
+
+  .CTAButtons {
+    flex-direction: column;
+  }
+
+  .CTAIllustration {
+    display: none;
+  }
+}

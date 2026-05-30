@@ -1,0 +1,152 @@
+.PageLayout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 32px;
+  margin: 40px 0;
+}
+
+.FormSection {
+  min-width: 0;
+}
+
+.InfoSection {
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.InfoCard {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+.InfoTitle img {
+  width: 30px;
+  height: 30px;
+}
+
+.InfoTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.InfoContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.InfoText {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a5568;
+  margin: 0;
+}
+
+.ContactBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ContactItem {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.ContactIcon {
+  font-size: 24px;
+  background: #f7fafc;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.ContactIcon img {
+  width: 30px;
+  height: 30px;
+}
+
+.ContactItem strong {
+  display: block;
+  font-size: 14px;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.ContactItem p {
+  margin: 0;
+  font-size: 16px;
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.TipsBlock {
+  background: #fff5f5;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #feb2b2;
+}
+
+.TipsBlock h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #c53030;
+  margin: 0 0 12px 0;
+}
+
+.TipsBlock img {
+  width: 20px;
+  height: 20px;
+}
+
+.TipsList {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.TipsList li {
+  color: #2d3748;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .PageLayout {
+    grid-template-columns: 1fr 320px;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .PageLayout {
+    grid-template-columns: 1fr;
+    margin: 20px 0;
+  }
+  
+  .InfoSection {
+    position: static;
+  }
+  
+  .InfoCard {
+    padding: 20px;
+  }
+}

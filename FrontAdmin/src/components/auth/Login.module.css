@@ -1,0 +1,183 @@
+@import '../../styles/variables.css';
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--gradient-page);
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  padding: 0;
+}
+
+.loginHeader {
+  background: var(--gradient-primary);
+  color: var(--text-white);
+  padding: var(--padding-lg);
+  text-align: center;
+}
+
+.loginHeader h1 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+}
+
+.loginHeader p {
+  margin: 10px 0 0;
+  opacity: 0.8;
+  font-size: var(--font-size-md);
+}
+
+.loginForm {
+  padding: var(--padding-lg);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.formControl {
+  width: 100%;
+  padding: var(--padding-sm) var(--padding-md);
+  border: 1px solid var(--border-light);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-md);
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.formControl:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+/* Стили для поля с паролем */
+.passwordField {
+  position: relative;
+}
+
+.passwordField .formControl {
+  padding-right: 45px; /* Место для иконки глаза */
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  opacity: 0.6;
+  transition: opacity var(--transition-speed-fast);
+}
+
+.passwordToggle:hover,
+.passwordToggle:focus {
+  opacity: 1;
+  outline: none;
+}
+
+.passwordToggle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.loginButton {
+  width: 100%;
+  background: var(--gradient-primary);
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  padding: 14px;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: transform var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+}
+
+.loginButton:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-button-hover);
+}
+
+.loginButton:active {
+  transform: translateY(0);
+}
+
+.loginButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.errorMessage {
+  background-color: var(--bg-error);
+  color: var(--text-error);
+  padding: var(--padding-sm);
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 20px;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+}
+
+.errorMessage svg {
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.loadingSpinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top: 3px solid var(--text-white);
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 440px) {
+  .loginHeader h1 {
+    font-size: var(--font-size-lg);
+  }
+  .loginHeader p {
+    font-size: var(--font-size-sm);
+  }
+
+  .loginHeader {
+    padding: var(--padding-md-lg);
+  }
+}

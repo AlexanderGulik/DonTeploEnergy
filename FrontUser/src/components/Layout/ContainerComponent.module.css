@@ -1,0 +1,25 @@
+.Container {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  color: #212529;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Убираем мобильную тень, делаем отступы по бокам */
+  box-shadow: none;
+  padding-left: 24px;
+  padding-right: 24px;
+  box-sizing: border-box;
+}
+
+/* Адаптация под мобильные - теперь это исключение, а не правило */
+@media (max-width: 768px) {
+  .Container {
+    padding-left: 16px;
+    padding-right: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); /* Тень возвращаем только на телефонах */
+  }
+}

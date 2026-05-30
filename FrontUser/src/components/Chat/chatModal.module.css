@@ -1,0 +1,291 @@
+/* ChatModal.module.css - Original font sizes, Main page font family */
+
+.CompletedBadge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 8px;
+  background-color: #27ae60;
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.ClosedChatContainer {
+  padding: 20px;
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.ClosedChatMessage {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 8px;
+}
+
+.ClosedChatSubtext {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.ClosedBadge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 8px;
+  background-color: #6b7280;
+  color: white;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.HeaderInfo {
+  position: relative;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.Modal {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 12px 12px 0 0;
+}
+
+.HeaderInfo h3 {
+  margin: 0;
+  font-size: 18px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.FormInfo {
+  margin: 4px 0 0;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  color: #6b7280;
+}
+
+.CloseButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #9ca3af;
+  transition: color 0.2s;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.CloseButton:hover {
+  color: #ef4444;
+  background: #fee2e2;
+}
+
+.MessagesContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: #f9fafb;
+  display: flex;
+  flex-direction: column;
+}
+
+.Loading, .EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.EmptyState span {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.EmptyState p {
+  margin: 0 0 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  color: #6b7280;
+}
+
+.EmptyState small {
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.Message {
+  display: flex;
+  margin-bottom: 16px;
+  animation: messageAppear 0.3s ease;
+}
+
+@keyframes messageAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.UserMessage {
+  justify-content: flex-end;
+}
+
+.OperatorMessage {
+  justify-content: flex-start;
+}
+
+.MessageContent {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  position: relative;
+}
+
+.UserMessage .MessageContent {
+  background: #3b82f6;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.OperatorMessage .MessageContent {
+  background: white;
+  color: #1f2937;
+  border: 1px solid #e5e7eb;
+  border-bottom-left-radius: 4px;
+}
+
+.MessageText {
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-weight: 500;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.MessageTime {
+  font-size: 10px;
+  margin-top: 4px;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.UserMessage .MessageTime {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.OperatorMessage .MessageTime {
+  color: #9ca3af;
+}
+
+.ReadMark {
+  font-size: 10px;
+}
+
+.InputForm {
+  display: flex;
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 0 0 12px 12px;
+  gap: 12px;
+}
+
+.MessageInput {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 24px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.MessageInput:focus {
+  border-color: #3b82f6;
+}
+
+.SendButton {
+  padding: 8px 24px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.SendButton:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.SendButton:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}

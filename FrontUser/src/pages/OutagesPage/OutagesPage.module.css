@@ -1,0 +1,579 @@
+.Main {
+  flex: 1;
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* ========== Hero секция ========== */
+.HeroSection {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+ border-radius: 24px;
+  padding: 40px;
+  margin-bottom: 32px;
+  color: white;
+}
+
+.HeroContent {
+  margin-bottom: 32px;
+}
+
+.HeroTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.TitleIcon {
+  font-size: 40px;
+}
+
+.HeroSubtitle {
+  font-size: 18px;
+  opacity: 0.9;
+  margin: 0;
+}
+.HeroTitle img {
+  height: 50px;
+  width: 50px;
+}
+
+.StatsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.StatCard {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s;
+}
+
+.StatCard:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.StatValue {
+  font-size: 30px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.StatLabel {
+  font-size: 14px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ========== Панель управления ========== */
+.ControlPanel {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.SearchWrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.SearchInput {
+  width: 100%;
+  padding: 16px 50px 16px 52px;
+  font-size: 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  background: white;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.SearchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #94a3b8;
+}
+.SearchIcon img {
+  width: 25px;
+  height: 25px;
+}
+
+
+
+
+.SearchInput:focus {
+  outline: none;
+  border-color: #1a365d;
+  box-shadow: 0 0 0 4px rgba(26, 54, 93, 0.1);
+}
+
+.ClearButton {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e2e8f0;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.ClearButton:hover {
+  background: #cbd5e0;
+  color: #1a202c;
+}
+
+.Filters {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.FilterSelect {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.FilterSelect:focus {
+  outline: none;
+  border-color: #1a365d;
+}
+
+.ViewToggle {
+  display: flex;
+  gap: 8px;
+}
+
+.ViewButton {
+  padding: 12px 20px;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  gap:10px;
+}
+
+.ViewButton img {
+  width: 15px;
+  height: 15px;
+}
+
+.ViewButton:hover {
+  background: #edf2f7;
+}
+
+.ViewButton.Active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* ========== Список отключений ========== */
+.OutagesSection {
+  margin-bottom: 40px;
+}
+
+.LoadingState {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.Spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #1a365d;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* List View */
+.ListView {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Grid View */
+.GridView {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 24px;
+}
+
+.OutageCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s;
+}
+
+
+.OutageCard:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 16px;
+}
+
+.AddressWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.StatusIcon img{
+  width: 30px;
+  height: 30px;
+}
+
+.Address {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+  line-height: 1.4;
+}
+.Label img {
+  width: 20px;
+  height: 20px;
+}
+.StatusBadge {
+  display: flex;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.Pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 currentColor; }
+  70% { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.CardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.DateTimeBlock {
+  display: flex;
+  gap: 24px;
+  padding: 12px;
+  background: #f7fafc;
+  border-radius: 12px;
+}
+
+.DateTimeItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.Label {
+  font-size: 16px;
+  color: #64748b;
+  gap: 10px;
+  display: flex;
+}
+
+.Value {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.ReasonBlock {
+  padding: 12px;
+}
+
+.Reason {
+  margin: 8px 0 0 0;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.ProgressBar {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.ProgressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #c0392b 0%, #e74c3c 100%);
+  border-radius: 3px;
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+@keyframes progressPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.CardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.DetailsButton {
+  padding: 8px 16px;
+  background: transparent;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.DetailsButton:hover {
+  background: #f7fafc;
+  border-color: #cbd5e0;
+}
+
+.LiveIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.LiveDot {
+  width: 8px;
+  height: 8px;
+  background: #c0392b;
+  border-radius: 50%;
+  animation: livePulse 1.5s infinite;
+}
+
+@keyframes livePulse {
+  0% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ========== Empty State ========== */
+.EmptyState {
+  text-align: center;
+  padding: 80px 40px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.EmptyIcon {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+.EmptyIcon img {
+  width: 90px;
+  height: 90px;
+}
+
+.EmptyState h3 {
+  font-size: 20px;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.EmptyState p {
+  color: #64748b;
+  margin: 0 0 20px 0;
+}
+
+.ResetButton {
+  padding: 12px 24px;
+  background: #1a365d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ResetButton:hover {
+  background: #2b4c7c;
+  transform: translateY(-2px);
+}
+
+/* ========== Информационная секция ========== */
+.InfoSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.InfoCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: white;
+}
+
+.InfoIcon {
+  font-size: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.InfoIcon img {
+  width: 40px;
+  height: 40px;
+}
+
+.InfoCard h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.InfoCard p {
+  margin: 0;
+  opacity: 0.95;
+  font-size: 15px;
+}
+
+/* ========== Адаптивность ========== */
+@media (max-width: 1024px) {
+  .StatsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .GridView {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .Main {
+    padding: 20px 0;
+  }
+
+  .HeroSection {
+    padding: 24px;
+  }
+
+  .HeroTitle {
+    font-size: 28px;
+  }
+
+  .StatsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ControlPanel {
+    padding: 16px;
+  }
+
+  .Filters {
+    flex-direction: column;
+  }
+
+  .FilterSelect {
+    width: 100%;
+  }
+
+  .ViewToggle {
+    width: 100%;
+  }
+
+  .ViewButton {
+    flex: 1;
+  }
+
+  .InfoSection {
+    grid-template-columns: 1fr;
+  }
+
+  .InfoCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .DateTimeBlock {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

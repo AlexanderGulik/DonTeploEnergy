@@ -1,0 +1,494 @@
+.Main {
+  flex: 1;
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* ========== Hero секция ========== */
+.HeroSection {
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  border-radius: 24px;
+  padding: 48px 40px;
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.HeroSection::before {
+  content: '💰';
+  position: absolute;
+  right: -20px;
+  bottom: -30px;
+  font-size: 200px;
+  opacity: 0.1;
+  transform: rotate(-15deg);
+}
+
+.HeroContent {
+  position: relative;
+  z-index: 2;
+}
+
+.HeroTitle {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+}
+
+.HeroTitle img {
+  width: 50px;
+  height: 50px;
+}
+
+.HeroSubtitle {
+  font-size: 18px;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.HeroBadge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.BadgeIcon img {
+  width: 18px;
+}
+
+/* ========== Состояние загрузки ========== */
+.LoadingState {
+  text-align: center;
+  padding: 80px 0;
+}
+
+.Spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #27ae60;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========== Текущий тариф ========== */
+.CurrentTariffSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 48px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.SectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.SectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.TitleIcon img {
+  width: 32px;
+  height: 32px;
+}
+
+.PeriodBadge {
+  background: #27ae60;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.BasisText {
+  color: #64748b;
+  font-size: 15px;
+  margin: 0 0 28px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Табы */
+.Tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.Tabs img {
+  width: 22px;
+  height: 22px;
+}
+
+.Tab {
+  gap: 10px;
+  display: flex;
+  padding: 12px 24px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.Tab:hover {
+  background: #edf2f7;
+}
+
+.ActiveTab {
+  background: #27ae60;
+  border-color: #27ae60;
+  color: white;
+}
+
+/* Таблица */
+.TariffTable {
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.TariffTable table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.TariffTable th {
+  text-align: left;
+  padding: 16px;
+  background: #f7fafc;
+  font-weight: 600;
+  color: #2d3748;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.TariffTable td {
+  padding: 18px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #1a202c;
+}
+
+.ServiceName {
+  font-weight: 600;
+  color: #1a202c;
+}
+
+.Unit {
+  color: #64748b;
+}
+
+.Price {
+  font-weight: 700;
+  color: #27ae60;
+  font-size: 18px;
+}
+
+.TaxInfo {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f0fdf4;
+  border-radius: 12px;
+  border: 1px solid #86efac;
+}
+.TaxInfo img {
+  width: 20px;
+  height: 20px;
+}
+
+.TaxInfo p {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+  color: #166534;
+  font-size: 14px;
+}
+
+/* ========== Архив тарифов ========== */
+.ArchiveSection {
+  margin-bottom: 48px;
+}
+
+.ArchiveTitle img {
+  width: 40px;
+  height: 40px;
+}
+
+.ArchiveTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ArchiveGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.ArchiveCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s;
+}
+
+.ArchiveCard:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e0;
+}
+
+.ArchiveCardHeader {
+  margin-bottom: 12px;
+}
+
+.ArchivePeriod {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+.ArchiveBasis {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.ArchiveGroup h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2d3748;
+  margin: 0 0 8px 0;
+}
+
+.ArchiveGroup ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.MoreItems {
+  color: #94a3b8;
+  list-style: none;
+  margin-top: 4px;
+}
+
+.ViewButton {
+  margin-top: 20px;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  color: #27ae60;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.ViewButton:hover {
+  color: #1e8449;
+}
+
+/* ========== Способы оплаты ========== */
+.PaymentSection {
+  margin-bottom: 48px;
+}
+
+.PaymentTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 24px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.PaymentGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.PaymentCard {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  transition: transform 0.2s;
+}
+
+.PaymentCard:hover {
+  transform: translateY(-4px);
+}
+
+.PaymentIcon img {
+  width: 40px;
+  margin-bottom: 16px;
+}
+
+.PaymentCard h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.PaymentCard p {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ========== Контакты ========== */
+.ContactSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.ContactCard {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  color: white;
+}
+
+.ContactIcon {
+  font-size: 36px;
+  background: rgba(255, 255, 255, 0.2);
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ContactIcon img {
+  width: 40px;
+  height: 40px;
+}
+
+.ContactCard h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+}
+
+.ContactCard p {
+  margin: 0;
+  opacity: 0.95;
+  font-size: 16px;
+}
+
+/* ========== Адаптивность ========== */
+@media (max-width: 1024px) {
+  .PaymentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .Main {
+    padding: 20px 0;
+  }
+
+  .HeroSection {
+    padding: 32px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .HeroTitle {
+    font-size: 32px;
+  }
+
+  .HeroSubtitle {
+    font-size: 16px;
+  }
+
+  .CurrentTariffSection {
+    padding: 20px;
+  }
+
+  .SectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .SectionTitle {
+    font-size: 24px;
+  }
+
+  .Tabs {
+    flex-direction: column;
+  }
+
+  .ArchiveGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .PaymentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .ContactSection {
+    grid-template-columns: 1fr;
+  }
+
+  .ContactCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}

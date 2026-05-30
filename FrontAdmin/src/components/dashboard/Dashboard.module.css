@@ -1,0 +1,728 @@
+@import '../../styles/variables.css';
+/* Добавьте в src/components/Dashboard/Dashboard.module.css */
+
+.statCard.admins {
+  border-top: 4px solid var(--bg-stat-5);
+}
+
+.statIconWrapper.admins {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: var(--bg-stat-5);
+}
+
+/* Стили для ролей */
+.roleBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.roleBadge.admin {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+.roleBadge.moderator {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+/* Стили для счетчиков */
+.processedCount {
+  color: var(--bg-stat-2);
+  font-weight: 600;
+}
+
+.activeCount {
+  color: var(--bg-stat-3);
+  font-weight: 600;
+}
+
+.totalProcessed {
+  color: var(--bg-stat-4);
+  font-weight: 600;
+}
+
+.completedCount {
+  color: #166534;
+  font-weight: 600;
+}
+
+.pendingCount {
+  color: #ca8a04;
+  font-weight: 600;
+}
+
+/* Стили для полосы активности */
+.activityBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.activityFill {
+  height: 8px;
+  border-radius: 4px;
+  background-color: #e0e0e0;
+  transition: width 0.3s ease;
+  flex: 1;
+}
+
+.activityText {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  min-width: 30px;
+}
+
+/* Анимация для полосы активности */
+.activityFill {
+  animation: fillAnimation 1s ease-out;
+}
+
+@keyframes fillAnimation {
+  from {
+    width: 0;
+  }
+}
+
+/* Улучшенные стили для аватара админа */
+.adminAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-stat-5), #c084fc);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semibold);
+  margin-right: 12px;
+}
+
+/* Дополнительные медиа-запросы */
+@media (max-width: 576px) {
+  .activityBar {
+    min-width: 80px;
+  }
+  
+  .roleBadge {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+}
+.statCard.forms {
+  border-top: 4px solid var(--bg-stat-2);
+}
+
+.statIconWrapper.forms {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--bg-stat-2);
+}
+
+.statCard.outages {
+  border-top: 4px solid var(--bg-stat-3);
+}
+
+.statIconWrapper.outages {
+  background-color: rgba(6, 182, 212, 0.1);
+  color: var(--bg-stat-3);
+}
+
+.statCard.tariffs {
+  border-top: 4px solid var(--bg-stat-4);
+}
+
+.statIconWrapper.tariffs {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--bg-stat-4);
+}
+
+.formTypeBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: capitalize;
+}
+
+.formTypeBadge.emergency {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.formTypeBadge.noheating {
+  background-color: #ffedd5;
+  color: #9a3412;
+}
+
+.formTypeBadge.nowatter {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusBadge.active {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.statusBadge.completed {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.statusBadge.pending {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.statusBadge.planned {
+  background-color: #f3e8ff;
+  color: #6b21a8;
+}
+
+.statusBadge.in-progress {
+  background-color: #fce7f3;
+  color: #9d174d;
+}
+.dashboardContainer {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+}
+
+.statCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.statCard.users {
+  border-top: 4px solid var(--bg-stat-1);
+}
+
+.statCard.cases {
+  border-top: 4px solid var(--bg-stat-2);
+}
+
+.statCard.gifts {
+  border-top: 4px solid var(--bg-stat-3);
+}
+
+.statCard.wins {
+  border-top: 4px solid var(--bg-stat-4);
+}
+
+.statCard.balance {
+  border-top: 4px solid var(--bg-stat-5);
+}
+
+.statHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.statTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.statIconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statIconWrapper.users {
+  background-color: rgba(79, 70, 229, 0.1);
+  color: var(--bg-stat-1);
+}
+
+.statIconWrapper.cases {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--bg-stat-2);
+}
+
+.statIconWrapper.gifts {
+  background-color: rgba(6, 182, 212, 0.1);
+  color: var(--bg-stat-3);
+}
+
+.statIconWrapper.wins {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--bg-stat-4);
+}
+
+.statIconWrapper.balance {
+  background-color: rgba(168, 85, 247, 0.1);
+  color: var(--bg-stat-5);
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 8px 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--padding-lg);
+  gap: 8px;
+}
+
+.paginationButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-white);
+  cursor: pointer;
+  transition: background-color var(--transition-speed-fast), color var(--transition-speed-fast);
+}
+
+.paginationButton:hover {
+  background-color: var(--bg-hover);
+}
+
+.paginationButton.active {
+  background-color: var(--color-accent);
+  color: var(--text-white);
+  border-color: var(--color-accent);
+}
+
+.paginationButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+}
+
+/* Стили для детальной статистики */
+.detailedStats {
+  margin-top: var(--padding-lg);
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 24px;
+  margin-bottom: var(--padding-lg);
+}
+
+.dataCard {
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-md);
+  padding: var(--padding-lg);
+  box-shadow: var(--shadow-stat-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-speed-fast), box-shadow var(--transition-speed-fast);
+  overflow: hidden;
+}
+
+.dataCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dataCard.topUsers,
+.dataCard.referralStats {
+  border-top: 4px solid var(--bg-stat-1);
+}
+
+.dataCard.casesStats,
+.dataCard.casesPopularity {
+  border-top: 4px solid var(--bg-stat-2);
+}
+
+.dataCard.topWins,
+.dataCard.frequentWins {
+  border-top: 4px solid var(--bg-stat-4);
+}
+
+.dataCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--padding-md);
+}
+
+.dataCardTitle {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.dataCardIconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dataCardContent {
+  overflow-x: auto;
+}
+
+/* Стили для таблиц */
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dataTable th {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-light);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.dataTable td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-faint);
+  color: var(--text-primary);
+}
+
+.dataTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dataTable tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.025);
+}
+
+/* Стили для отображения пользователей */
+.userAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--bg-stat-1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-semibold);
+  margin-right: 12px;
+}
+
+.usernameCell {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.statusNull {
+  background-color: var(--bg-status-null);
+  color: var(--text-status-null);
+}
+
+.statusPending {
+  background-color: var(--bg-status-pending);
+  color: var(--text-status-pending);
+}
+
+.statusOrder {
+  background-color: var(--bg-status-order);
+  color: var(--text-status-order);
+}
+
+.statusShipped {
+  background-color: var(--bg-status-shipped);
+  color: var(--text-status-shipped);
+}
+
+.statusDelivered {
+  background-color: var(--bg-status-delivered);
+  color: var(--text-status-delivered);
+}
+
+/* Стили для типов кейсов */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: capitalize;
+}
+
+.premium {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.standard {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.basic {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+.caseType {
+  white-space: nowrap;
+}
+
+.balanceCell,
+.giftPrice,
+.valueDistributed {
+  font-weight: var(--font-weight-medium);
+  color: var(--bg-stat-5);
+}
+
+.caseName {
+  font-weight: var(--font-weight-medium);
+}
+
+.giftName {
+  font-weight: var(--font-weight-medium);
+  color: var(--bg-stat-3);
+}
+
+.winCount,
+.timesOpened {
+  font-weight: var(--font-weight-semibold);
+  color: var(--bg-stat-4);
+}
+
+.dropChance {
+  font-weight: var(--font-weight-medium);
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 992px) {
+  .statsRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .dataTable {
+    font-size: var(--font-size-sm);
+  }
+
+  .dataTable th,
+  .dataTable td {
+    padding: 8px 12px;
+  }
+
+  .userAvatar {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Секции с таблицами */
+.section {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.table th {
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: var(--bg-secondary);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--bg-hover);
+}
+
+.table tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Статусы */
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status.pending {
+  background: var(--warning-light);
+  color: var(--warning);
+}
+
+.status.order {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.status.null {
+  background: var(--gray-light);
+  color: var(--gray);
+}
+
+/* Цвета для иконок */
+.users {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.cases {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.gifts {
+  background: var(--warning-light);
+  color: var(--warning);
+}
+
+.wins {
+  background: var(--info-light);
+  color: var(--info);
+}
+
+.balance {
+  background: var(--purple-light);
+  color: var(--purple);
+}
+
+/* Сообщение об ошибке */
+.errorMessage {
+  background-color: var(--error-light);
+  color: var(--error);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 576px) {
+  .table th,
+  .table td {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,81 @@
+.Footer {
+  width: 100%;
+  background-color: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  margin-top: auto; /* Прижимаем к низу, если контента мало */
+  padding: 40px 0 24px;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+.FooterText {
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.FooterContent {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.LogoSection {
+  max-width: 250px;
+}
+
+.Logo {
+  height: 40px;
+  width: auto;
+  margin-bottom: 16px;
+}
+
+.Copyright {
+  color: #718096;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.LinksSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.LinksTitle {
+  color: #1a202c;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.FooterLink {
+  color: #4a5568;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.FooterLink:hover {
+  color: #1a365d;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+  .FooterContent {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .LogoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .LinksSection {
+    align-items: center;
+  }
+}

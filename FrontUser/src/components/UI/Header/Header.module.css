@@ -1,0 +1,350 @@
+.Header {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 16px 0;
+  box-sizing: border-box;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid #e2e8f0;
+
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.HeaderTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Название компании */
+.Brand {
+  transition: opacity 0.2s;
+}
+
+.Brand:hover {
+  opacity: 0.8;
+}
+
+.BrandTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a365d;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Навигация */
+.Nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.NavLink {
+  text-decoration: none;
+  color: #2d3748;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color 0.2s;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.NavLink:hover {
+  color: #1a365d;
+}
+
+/* Выпадающее меню */
+.Dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.DropdownContent {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  background-color: #ffffff;
+  min-width: 240px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  z-index: 1000;
+  padding: 8px 0;
+  margin-top: 8px;
+}
+
+.Dropdown:hover .DropdownContent {
+  display: block;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.DropdownLink {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #2d3748;
+  font-size: 15px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.DropdownLink img {
+  width: 20px;
+  height: 20px;
+}
+
+.DropdownLink:hover {
+  background-color: #f7fafc;
+  color: #1a365d;
+  padding-left: 24px;
+}
+
+/* Кнопка входа */
+.LoginButton {
+  background: linear-gradient(135deg, #1a365d 0%, #2b4c7c 100%);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 15px;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.LoginButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(26, 54, 93, 0.3);
+}
+
+/* Меню пользователя */
+.UserMenuWrapper {
+  position: relative;
+}
+
+.UserButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f7fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 15px;
+}
+
+.UserButton:hover {
+  background: white;
+  border-color: #1a365d;
+}
+
+.UserAvatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #1a365d 0%, #2b4c7c 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.UserName {
+  color: #1a202c;
+  font-weight: 500;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.UserArrow {
+  font-size: 12px;
+  color: #94a3b8;
+  transition: transform 0.2s;
+}
+
+.UserButton:hover .UserArrow {
+  transform: rotate(180deg);
+}
+
+.UserDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: white;
+  min-width: 220px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 8px 0;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.UserDropdown img {
+  width: 15px;
+  height: 15px;
+}
+
+.UserDropdownLink {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  color: #2d3748;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.UserDropdownLink:hover {
+  background: #f7fafc;
+  color: #1a365d;
+  padding-left: 24px;
+}
+
+.UserDropdownDivider {
+  height: 1px;
+  background: #e2e8f0;
+  margin: 8px 0;
+}
+
+.UserDropdownButton {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  color: #e53e3e;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.UserDropdownButton:hover {
+  background: #fef2f2;
+  padding-left: 24px;
+}
+
+/* Заголовок страницы */
+.PageTitleWrapper {
+  margin-top: 24px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.PageTitle {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .Nav {
+    gap: 20px;
+  }
+  
+  .BrandTitle {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Header {
+    padding: 12px 0;
+  }
+  
+  .HeaderTop {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .Brand {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .BrandTitle {
+    font-size: 18px;
+  }
+  
+  .Nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .NavLink {
+    font-size: 14px;
+  }
+  
+  .LoginButton {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+  
+  .UserButton {
+    padding: 6px 12px;
+  }
+  
+  .UserName {
+    max-width: 80px;
+  }
+  
+  .PageTitle {
+    font-size: 24px;
+  }
+  
+  .DropdownContent {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .UserDropdown {
+    right: -50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Nav {
+    gap: 12px;
+  }
+  
+  .DropdownContent {
+    min-width: 200px;
+  }
+  
+  .DropdownLink {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+  
+  .UserDropdown {
+    right: -20px;
+    min-width: 200px;
+  }
+}
