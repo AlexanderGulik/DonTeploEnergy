@@ -10,6 +10,7 @@ import EmergencyPage from '../../pages/Forms/EmergencyPage';
 import TariffsPage from '../../pages/TariffsPage/TariffsPage';
 import OutagesPage from '../../pages/OutagesPage/OutagesPage';
 import FAQPage from '../../pages/FAQPage/FAQPage';
+import ScrollToTop from '../UI/Scroll/ScrollToTop.jsx';
 
 const PublicRoute = ({ children }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -33,35 +34,35 @@ const ProtectedRoute = ({ children }) => {
 
 const AppRouter = () => {
   return (
-    <Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        } />
+        <Route path="/register" element={
+          <PublicRoute>
+            <RegisterPage />
+          </PublicRoute>
+        } />
+        
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        } />
 
- <Route path="/" element={<MainPage />} />
-      <Route path="/login" element={
-        <PublicRoute>
-          <LoginPage />
-        </PublicRoute>
-      } />
-      <Route path="/register" element={
-        <PublicRoute>
-          <RegisterPage />
-        </PublicRoute>
-      } />
-      
-      {/* Защищенные страницы */}
-      <Route path="/profile" element={
-        <ProtectedRoute>
-          <ProfilePage />
-        </ProtectedRoute>
-      } />
-
-      <Route path="/" element={<MainPage />} />
-      <Route path="/forms/no-heating" element={<NoHeatingPage />} />
-      <Route path="/forms/no-hot-water" element={<NoHotWaterPage />} />
-      <Route path="/forms/emergency" element={<EmergencyPage />} />
-      <Route path="/info/tariffs" element={<TariffsPage />} />
-      <Route path="/info/outages" element={<OutagesPage />} />
-      <Route path="/faq" element={<FAQPage />} />
-    </Routes>
+        <Route path="/forms/no-heating" element={<NoHeatingPage />} />
+        <Route path="/forms/no-hot-water" element={<NoHotWaterPage />} />
+        <Route path="/forms/emergency" element={<EmergencyPage />} />
+        <Route path="/info/tariffs" element={<TariffsPage />} />
+        <Route path="/info/outages" element={<OutagesPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+      </Routes>
+    </>
   );
 };
 
