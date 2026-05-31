@@ -102,6 +102,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .SectionTitle {
@@ -112,6 +114,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .TitleIcon img {
@@ -141,7 +144,9 @@
   display: flex;
   gap: 12px;
   margin-bottom: 28px;
+  flex-wrap: wrap;
 }
+
 .Tabs img {
   width: 22px;
   height: 22px;
@@ -175,11 +180,13 @@
 .TariffTable {
   margin-bottom: 20px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .TariffTable table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 500px;
 }
 
 .TariffTable th {
@@ -222,6 +229,7 @@
   border-radius: 12px;
   border: 1px solid #86efac;
 }
+
 .TaxInfo img {
   width: 20px;
   height: 20px;
@@ -233,6 +241,7 @@
   margin: 0;
   color: #166534;
   font-size: 14px;
+  flex-wrap: wrap;
 }
 
 /* ========== Архив тарифов ========== */
@@ -253,6 +262,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .ArchiveGrid {
@@ -343,6 +353,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .PaymentGrid {
@@ -430,65 +441,489 @@
   font-size: 16px;
 }
 
-/* ========== Адаптивность ========== */
+/* ============================================ */
+/* АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ (768px - 1024px) */
+/* ============================================ */
 @media (max-width: 1024px) {
+  .Main {
+    padding: 30px 20px;
+  }
+  
   .PaymentGrid {
     grid-template-columns: repeat(2, 1fr);
   }
+  
+  .HeroSection {
+    margin: 0 20px 48px 20px;
+  }
+  
+  .CurrentTariffSection,
+  .ArchiveSection,
+  .PaymentSection {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 }
 
+/* ============================================ */
+/* АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ (до 768px) */
+/* ============================================ */
 @media (max-width: 768px) {
   .Main {
-    padding: 20px 0;
+    padding: 16px 0;
   }
-
+  
+  /* Hero секция */
   .HeroSection {
-    padding: 32px 24px;
+    padding: 28px 20px;
+    margin: 0 16px 32px 16px;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+    border-radius: 20px;
   }
-
+  
+  .HeroSection::before {
+    font-size: 120px;
+    right: -10px;
+    bottom: -20px;
+  }
+  
   .HeroTitle {
-    font-size: 32px;
+    font-size: 28px;
   }
-
+  
+  .HeroTitle img {
+    width: 36px;
+    height: 36px;
+  }
+  
   .HeroSubtitle {
-    font-size: 16px;
+    font-size: 14px;
   }
-
+  
+  .HeroBadge {
+    padding: 8px 16px;
+    font-size: 12px;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  /* Текущий тариф */
   .CurrentTariffSection {
-    padding: 20px;
+    padding: 20px 16px;
+    margin: 0 16px 32px 16px;
+    border-radius: 16px;
   }
-
+  
   .SectionHeader {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
   }
-
+  
   .SectionTitle {
-    font-size: 24px;
+    font-size: 22px;
   }
-
+  
+  .TitleIcon img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .PeriodBadge {
+    font-size: 14px;
+    padding: 6px 16px;
+  }
+  
+  .BasisText {
+    font-size: 13px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+  }
+  
+  /* Табы */
   .Tabs {
     flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
   }
-
+  
+  .Tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    justify-content: center;
+  }
+  
+  .Tab img {
+    width: 18px;
+    height: 18px;
+  }
+  
+  /* Таблица */
+  .TariffTable {
+    overflow-x: auto;
+    margin: 0 -8px;
+    padding: 0 8px;
+  }
+  
+  .TariffTable table {
+    min-width: 480px;
+  }
+  
+  .TariffTable th {
+    padding: 12px;
+    font-size: 12px;
+  }
+  
+  .TariffTable td {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+  
+  .Price {
+    font-size: 16px;
+  }
+  
+  .TaxInfo p {
+    font-size: 12px;
+    gap: 8px;
+  }
+  
+  .TaxInfo img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* Архив тарифов */
+  .ArchiveSection {
+    margin: 0 16px 32px 16px;
+  }
+  
+  .ArchiveTitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .ArchiveTitle img {
+    width: 32px;
+    height: 32px;
+  }
+  
   .ArchiveGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
-
+  
+  .ArchiveCard {
+    padding: 20px;
+  }
+  
+  .ArchivePeriod {
+    font-size: 16px;
+  }
+  
+  .ArchiveBasis {
+    font-size: 12px;
+  }
+  
+  .ViewButton {
+    padding: 8px 0;
+    font-size: 13px;
+  }
+  
+  /* Способы оплаты */
+  .PaymentSection {
+    margin: 0 16px 32px 16px;
+  }
+  
+  .PaymentTitle {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .PaymentTitle img {
+    width: 28px;
+    height: 28px;
+  }
+  
   .PaymentGrid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
-
+  
+  .PaymentCard {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 16px;
+  }
+  
+  .PaymentIcon {
+    flex-shrink: 0;
+  }
+  
+  .PaymentIcon img {
+    width: 40px;
+    margin-bottom: 0;
+  }
+  
+  .PaymentCard h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .PaymentCard p {
+    font-size: 13px;
+  }
+  
+  /* Контакты */
   .ContactSection {
+    margin: 0 16px 32px 16px;
     grid-template-columns: 1fr;
+    gap: 16px;
   }
+  
+  .ContactCard {
+    padding: 20px;
+    flex-direction: row;
+    text-align: left;
+    gap: 16px;
+  }
+  
+  .ContactIcon {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+  }
+  
+  .ContactIcon img {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .ContactCard h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  
+  .ContactCard p {
+    font-size: 14px;
+  }
+}
 
+/* ============================================ */
+/* ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 480px) */
+/* ============================================ */
+@media (max-width: 480px) {
+  .Main {
+    padding: 12px 0;
+  }
+  
+  .HeroSection {
+    padding: 20px 16px;
+    margin: 0 12px 24px 12px;
+  }
+  
+  .HeroTitle {
+    font-size: 24px;
+  }
+  
+  .HeroTitle img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .HeroSubtitle {
+    font-size: 13px;
+  }
+  
+  .CurrentTariffSection {
+    padding: 16px;
+    margin: 0 12px 24px 12px;
+  }
+  
+  .SectionTitle {
+    font-size: 20px;
+  }
+  
+  .PeriodBadge {
+    font-size: 12px;
+    padding: 4px 12px;
+  }
+  
+  .TariffTable th,
+  .TariffTable td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+  
+  .Price {
+    font-size: 14px;
+  }
+  
+  .ArchiveCard {
+    padding: 16px;
+  }
+  
+  .ArchivePeriod {
+    font-size: 15px;
+  }
+  
+  .PaymentCard {
+    padding: 16px;
+  }
+  
+  .PaymentIcon img {
+    width: 32px;
+  }
+  
+  .PaymentCard h4 {
+    font-size: 15px;
+  }
+  
+  .ContactCard {
+    padding: 16px;
+  }
+  
+  .ContactIcon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .ContactIcon img {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .ContactCard h4 {
+    font-size: 15px;
+  }
+  
+  .ContactCard p {
+    font-size: 13px;
+  }
+}
+
+/* ============================================ */
+/* АЛЬБОМНАЯ ОРИЕНТАЦИЯ НА МОБИЛЬНЫХ */
+/* ============================================ */
+@media (max-width: 768px) and (orientation: landscape) {
+  .HeroSection {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .HeroBadge {
+    width: auto;
+  }
+  
+  .Tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .PaymentGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .ContactSection {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .PaymentCard {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .PaymentIcon img {
+    margin-bottom: 12px;
+  }
+  
   .ContactCard {
     flex-direction: column;
     text-align: center;
+  }
+}
+
+/* ============================================ */
+/* УЛУЧШЕНИЕ TOUCH-ЦЕЛЕЙ НА МОБИЛЬНЫХ */
+/* ============================================ */
+@media (max-width: 768px) {
+  .Tab,
+  .ViewButton,
+  .PaymentCard,
+  .ContactCard {
+    cursor: pointer;
+    min-height: 48px;
+  }
+  
+  .Tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Предотвращаем зум на iOS при фокусе на полях ввода */
+  input,
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+  
+  /* Убираем анимации на мобильных для производительности */
+  .ArchiveCard:hover,
+  .PaymentCard:hover {
+    transform: none;
+  }
+  
+  /* Добавляем активные состояния для тапов */
+  .Tab:active,
+  .ViewButton:active,
+  .PaymentCard:active,
+  .ContactCard:active {
+    opacity: 0.7;
+    transition: opacity 0.1s;
+  }
+}
+
+/* ============================================ */
+/* DARK MODE SUPPORT (опционально) */
+/* ============================================ */
+@media (prefers-color-scheme: dark) {
+  @media (max-width: 768px) {
+    .CurrentTariffSection,
+    .ArchiveCard,
+    .PaymentCard {
+      background: #1a202c;
+      border-color: #2d3748;
+    }
+    
+    .SectionTitle,
+    .ArchivePeriod,
+    .PaymentCard h4,
+    .ServiceName {
+      color: #f7fafc;
+    }
+    
+    .BasisText,
+    .ArchiveBasis,
+    .PaymentCard p,
+    .Unit {
+      color: #a0aec0;
+    }
+    
+    .Tab {
+      background: #2d3748;
+      border-color: #4a5568;
+      color: #a0aec0;
+    }
+    
+    .ActiveTab {
+      background: #27ae60;
+      color: white;
+    }
   }
 }

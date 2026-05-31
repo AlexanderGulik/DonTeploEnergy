@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"donTeploenergo/src/config" // Добавить этот импорт
+	"donTeploenergo/src/config"
 	"donTeploenergo/src/modules/auth/user/dto"
 	"donTeploenergo/src/modules/auth/user/service"
 	"encoding/json"
@@ -17,7 +17,6 @@ type UserAuthController struct {
 
 func NewUserAuthController() *UserAuthController {
 	db := config.GetSqlDB()
-
 	service := service.NewUserAuthService(db)
 
 	return &UserAuthController{
@@ -32,7 +31,7 @@ func (c *UserAuthController) setRefreshTokenCookie(w http.ResponseWriter, refres
 		MaxAge:   7 * 24 * 60 * 60,
 		HttpOnly: true,
 		Secure:   os.Getenv("NODE_ENV") == "production",
-		SameSite: http.SameSiteNoneMode,
+		SameSite: http.SameSiteLaxMode,
 		Path:     "/",
 	})
 }
@@ -44,7 +43,7 @@ func (c *UserAuthController) clearRefreshTokenCookie(w http.ResponseWriter) {
 		MaxAge:   -1,
 		HttpOnly: true,
 		Secure:   os.Getenv("NODE_ENV") == "production",
-		SameSite: http.SameSiteNoneMode,
+		SameSite: http.SameSiteLaxMode,
 		Path:     "/",
 	})
 }
@@ -68,7 +67,7 @@ func (c *UserAuthController) Login(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, service.ErrUserInvalidInput):
 			c.sendError(w, "Все поля обязательны", http.StatusBadRequest)
 		case errors.Is(err, service.ErrUserInvalidCredentials):
-			c.sendError(w, "Неверное имя или пароль", http.StatusUnauthorized)
+			c.sendError(w, "Неверный email или пароль", http.StatusUnauthorized)
 		default:
 			c.sendError(w, "Ошибка сервера", http.StatusInternalServerError)
 		}
@@ -81,8 +80,12 @@ func (c *UserAuthController) Login(w http.ResponseWriter, r *http.Request) {
 		Message:     "Успешная авторизация",
 		AccessToken: tokens.AccessToken,
 		User: dto.UserInfo{
-			UserID: user.ID,
-			Email:  user.Email,
+			UserID:    user.ID,
+			Email:     user.Email,
+			FirstName: user.FirstName,
+			LastName:  user.LastName,
+			Phone:     user.Phone,
+			Address:   user.Address,
 		},
 	}
 
@@ -103,7 +106,7 @@ func (c *UserAuthController) Register(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, service.ErrUserInvalidInput):
 			c.sendError(w, "Проверьте введенные данные", http.StatusBadRequest)
 		case errors.Is(err, service.ErrUserExists):
-			c.sendError(w, "Пользователь с таким именем уже существует", http.StatusBadRequest)
+			c.sendError(w, "Пользователь с таким email уже существует", http.StatusBadRequest)
 		default:
 			fmt.Println(err)
 			c.sendError(w, "Ошибка сервера", http.StatusInternalServerError)
@@ -153,6 +156,7 @@ func (c *UserAuthController) RefreshToken(w http.ResponseWriter, r *http.Request
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
 }
+
 func (c *UserAuthController) Logout(w http.ResponseWriter, r *http.Request) {
 	cookie, err := r.Cookie("refresh_token")
 	if err == nil {

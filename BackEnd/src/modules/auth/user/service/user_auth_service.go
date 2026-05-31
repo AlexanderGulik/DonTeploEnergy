@@ -16,7 +16,7 @@ var (
 	ErrUserInvalidCredentials  = errors.New("неверное имя или пароль")
 	ErrUserExists              = errors.New("пользователь с таким именем уже существует")
 	ErrUserInvalidRefreshToken = errors.New("неверный Refresh Token")
-	ErrUserNotFound            = errors.New("администратор не найден")
+	ErrUserNotFound            = errors.New("пользователь не найден")
 	ErrUserInvalidInput        = errors.New("все поля обязательны")
 )
 
@@ -31,10 +31,9 @@ func NewUserAuthService(db *sql.DB) *UserAuthService {
 func (s *UserAuthService) getUserByEmail(email string) (*dto.UserDB, error) {
 	var user dto.UserDB
 	err := s.db.QueryRow(
-
-		"SELECT id_user, email, password_hash FROM users WHERE email = $1",
+		"SELECT id_user, email, password_hash, firstname, lastname, phone, address FROM users WHERE email = $1",
 		email,
-	).Scan(&user.ID, &user.Email, &user.Password)
+	).Scan(&user.ID, &user.Email, &user.Password, &user.FirstName, &user.LastName, &user.Phone, &user.Address)
 
 	if err != nil {
 		return nil, err
@@ -45,9 +44,9 @@ func (s *UserAuthService) getUserByEmail(email string) (*dto.UserDB, error) {
 func (s *UserAuthService) getUserByID(id int64) (*dto.UserDB, error) {
 	var user dto.UserDB
 	err := s.db.QueryRow(
-		"SELECT id_user, email, password_hash FROM users WHERE id_user = $1",
+		"SELECT id_user, email, password_hash, firstname, lastname, phone, address FROM users WHERE id_user = $1",
 		id,
-	).Scan(&user.ID, &user.Email, &user.Password)
+	).Scan(&user.ID, &user.Email, &user.Password, &user.FirstName, &user.LastName, &user.Phone, &user.Address)
 
 	if err != nil {
 		return nil, err
@@ -85,23 +84,25 @@ func (s *UserAuthService) saveRefreshToken(userID int64, refreshToken string) er
 		return err
 	}
 
-	query := `
-		INSERT INTO user_jwt (id_user, token) 
-		VALUES ($1, $2) 	
-	`
-
 	log.Printf("Сохранение refresh token для userID: %d", userID)
 
-	_, err = s.db.Exec(query, userID, encryptedToken)
+	// Сначала удаляем старый токен
+	_, err = s.db.Exec("DELETE FROM user_jwt WHERE id_user = $1", userID)
 	if err != nil {
-		log.Printf("Ошибка сохранения refresh token: %v", err)
+		log.Printf("Ошибка удаления старого токена: %v", err)
 		return err
 	}
 
-	log.Printf("Refresh token успешно сохранен")
+	// Затем вставляем новый
+	_, err = s.db.Exec("INSERT INTO user_jwt (id_user, token) VALUES ($1, $2)", userID, encryptedToken)
+	if err != nil {
+		log.Printf("Ошибка вставки нового токена: %v", err)
+		return err
+	}
+
+	log.Printf("Refresh token успешно сохранен для userID: %d", userID)
 	return nil
 }
-
 func (s *UserAuthService) getRefreshToken(userID int64) (string, error) {
 	var encryptedToken string
 	err := s.db.QueryRow("SELECT token FROM user_jwt WHERE id_user = $1", userID).Scan(&encryptedToken)
@@ -117,7 +118,6 @@ func (s *UserAuthService) deleteRefreshToken(userID int64) error {
 	return err
 }
 
-// Основная бизнес-логика
 func (s *UserAuthService) Login(req *dto.UserLoginRequest) (*dto.UserDB, *dto.UserTokenPair, error) {
 	if req.Email == "" || req.Password == "" {
 		return nil, nil, ErrUserInvalidInput
@@ -181,8 +181,12 @@ func (s *UserAuthService) Register(req *dto.UserRegisterRequest) (*dto.UserDB, *
 	}
 
 	user := &dto.UserDB{
-		ID:    UserID,
-		Email: req.Email,
+		ID:        UserID,
+		Email:     req.Email,
+		FirstName: req.FirstName,
+		LastName:  req.LastName,
+		Phone:     req.Phone,
+		Address:   req.Address,
 	}
 
 	accessToken, err := utils.GenerateUserAccessToken(user.ID, user.Email)

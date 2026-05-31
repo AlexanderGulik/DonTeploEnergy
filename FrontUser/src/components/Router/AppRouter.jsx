@@ -10,6 +10,7 @@ import EmergencyPage from '../../pages/Forms/EmergencyPage';
 import TariffsPage from '../../pages/TariffsPage/TariffsPage';
 import OutagesPage from '../../pages/OutagesPage/OutagesPage';
 import FAQPage from '../../pages/FAQPage/FAQPage';
+import Filial from '../../pages/filialPage/Filial'; // Импортируем компонент филиала
 import ScrollToTop from '../UI/Scroll/ScrollToTop.jsx';
 
 const PublicRoute = ({ children }) => {
@@ -61,6 +62,9 @@ const AppRouter = () => {
         <Route path="/info/tariffs" element={<TariffsPage />} />
         <Route path="/info/outages" element={<OutagesPage />} />
         <Route path="/faq" element={<FAQPage />} />
+        
+        {/* Маршрут для страницы филиала */}
+        <Route path="/filial/:id" element={<Filial />} />
       </Routes>
     </>
   );

@@ -4,18 +4,28 @@ import { GiftI } from './gifts.types';
 import { Order } from './order.types';
 import  {OrderTon} from "./orderTon.types.ts";
 
+export interface LoginResponseI {
+  message: string;
+  access_token?: string;
+  accessToken?: string;
+  admin: {
+    admin_id: number;
+    name: string;
+    role: string;
+  };
+}
+
 export interface LogoutResponseI {
   message: string;
 }
 
-export interface LoginResponseI {
+export interface RefreshResponseI {
+  access_token?: string;
+  accessToken?: string;
+}
+
+export interface AdminErrorResponse {
   message: string;
-  accessToken: string;
-  admin: {
-    adminId: number;
-    name: string;
-    role: string;
-  };
 }
 
 export interface StatisticsResponseI extends StatisticsData {}

@@ -25,6 +25,9 @@ import teamIcon from '../../assets/icon-man.svg';
 import techIcon from '../../assets/icon-sack.svg';
 import paymentIcon from '../../assets/icon-bank.svg';
 
+// Импорт данных филиалов
+import { branchesData } from '../../data/data.js';
+
 const MainPageContent = () => {
   const navigate = useNavigate();
   
@@ -76,19 +79,33 @@ const MainPageContent = () => {
     },
   ];
 
+  // Массив филиалов с id для навигации
   const branches = [
-    'Филиал «Амвросиевкатеплосеть»',
-    'Филиал «Горловкатеплосеть»',
-    'Филиал «Донецктеплосеть»',
-    'Филиал «Енакиевотеплосеть»',
-    'Филиал «Макеевкатеплосеть»',
-    'Филиал «Новоазовсктеплосеть»',
-    'Филиал «Снежноетеплосеть»',
-    'Филиал «Харцызсктеплосеть»',
-    'Филиал «Шахтерсктеплосеть»',
-    'Филиал «Волновахатеплосеть»',
-    'Филиал «Мариупольтеплосеть»',
+    { name: 'Филиал «Амвросиевкатеплосеть»', id: 'amvrosievka' },
+    { name: 'Филиал «Горловкатеплосеть»', id: 'gorlovka' },
+    { name: 'Филиал «Донецктеплосеть»', id: 'donetsk' },
+    { name: 'Филиал «Енакиевотеплосеть»', id: 'enakievo' },
+    { name: 'Филиал «Макеевкатеплосеть»', id: 'makeevka' },
+    { name: 'Филиал «Новоазовсктеплосеть»', id: 'novoazovsk' },
+    { name: 'Филиал «Снежноетеплосеть»', id: 'snezhnoye' },
+    { name: 'Филиал «Харцызсктеплосеть»', id: 'kharcyzsk' },
+    { name: 'Филиал «Шахтерсктеплосеть»', id: 'shakhtersk' },
+    { name: 'Филиал «Волновахатеплосеть»', id: 'volnovakha' },
+    { name: 'Филиал «Мариупольтеплосеть»', id: 'mariupol' },
   ];
+
+  // Обработчик клика по филиалу
+  const handleBranchClick = (branchId, branchName) => {
+    // Получаем данные филиала из branchesData
+    const branchData = branchesData[branchId];
+    if (branchData) {
+      // Передаем данные филиала через state
+      navigate(`/filial/${branchId}`, { state: { branchData } });
+    } else {
+      // Если данных нет, просто переходим по id
+      navigate(`/filial/${branchId}`);
+    }
+  };
 
   const services = [
     {
@@ -231,15 +248,19 @@ const MainPageContent = () => {
 
         <div className={styles.BranchesGrid}>
           {branches.map((branch, index) => (
-            <div key={index} className={styles.BranchCard}>
+            <div 
+              key={index} 
+              className={styles.BranchCard}
+              onClick={() => handleBranchClick(branch.id, branch.name)}
+            >
               <div className={styles.BranchIcon}></div>
-              <span className={styles.BranchName}>{branch}</span>
+              <span className={styles.BranchName}>{branch.name}</span>
             </div>
           ))}
         </div>
 
         <div className={styles.MainOfficeCard}>
-          <div className={styles.MainOfficeIcon}><img src = {officeIcon}/></div>
+          <div className={styles.MainOfficeIcon}><img src={officeIcon} alt="office"/></div>
           <div className={styles.MainOfficeContent}>
             <h3 className={styles.MainOfficeTitle}>Центральный офис ГУП ДНР «Донбасстеплоэнерго»</h3>
             <p className={styles.MainOfficeAddress}>ДНР, 283086, г. Донецк, ул. Донецкая, 38.</p>
@@ -247,7 +268,6 @@ const MainPageContent = () => {
               className={styles.DetailsButton}
               onClick={() => navigate('/')}
             >
-              Подробнее 
             </button>
           </div>
         </div>

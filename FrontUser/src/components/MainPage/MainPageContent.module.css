@@ -23,16 +23,17 @@
   z-index: 2;
 }
 
-/* ============ ИСПРАВЛЕННАЯ КАРУСЕЛЬ ============ */
+/* ============ КАРУСЕЛЬ ============ */
 .Carousel {
   flex: 1;
   min-width: 280px;
   position: relative;
-  height: 320px;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
   width: 100%;
+  /* Убираем фиксированную высоту */
+  height: auto;
 }
 
 .CarouselContainer {
@@ -46,13 +47,13 @@
 .CarouselSlide {
   min-width: 100%;
   width: 100%;
-  height: 100%;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   flex-shrink: 0;
-  /* Добавляем принудительное растягивание */
   display: flex;
   align-items: stretch;
+  /* Убираем фиксированную высоту */
+  height: auto;
 }
 
 .CarouselSlide.Active {
@@ -60,44 +61,51 @@
 }
 
 .CarouselImage {
-  /* ВАЖНЫЕ ИЗМЕНЕНИЯ ДЛЯ ЗАПОЛНЕНИЯ */
   width: 100%;
-  height: 100%;
+  height: auto;
   min-height: 100%;
-  max-height: 100%;
   object-fit: cover;
   object-position: center;
   border-radius: 20px;
   display: block;
-  /* Принудительно убираем все отступы */
   margin: 0;
   padding: 0;
-  /* Если изображение меньшего размера - растягиваем */
-  image-rendering: auto;
+  /* Растягиваем на всю ширину */
+  aspect-ratio: 16 / 9;
 }
 
-/* ============ КОНЕЦ КАРУСЕЛИ ============ */
-
+/* ============ ИНДИКАТОРЫ (ТОЧКИ) ============ */
 .CarouselIndicators {
   position: absolute;
   bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   z-index: 10;
+  flex-wrap: wrap;
+  padding: 8px;
 }
 
 .Indicator {
   width: 10px;
   height: 10px;
+  min-width: 10px;
+  min-height: 10px;
+  max-width: 10px;
+  max-height: 10px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
   padding: 0;
-  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: block;
 }
 
 .Indicator:hover {
@@ -108,9 +116,12 @@
 .ActiveIndicator {
   background: #fbbf24;
   width: 24px;
+  min-width: 24px;
+  max-width: 24px;
   border-radius: 5px;
 }
 
+/* ============ КНОПКИ НАВИГАЦИИ ============ */
 .CarouselButton {
   position: absolute;
   top: 50%;
@@ -118,8 +129,10 @@
   background: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 20px;
@@ -129,7 +142,9 @@
   z-index: 10;
   opacity: 0;
   transition: opacity 0.3s ease, background 0.3s ease;
-  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+  padding: 0;
+  line-height: 1;
 }
 
 .Carousel:hover .CarouselButton {
@@ -223,7 +238,6 @@
   cursor: pointer;
   transition: all 0.3s;
   box-shadow: 0 4px 12px rgba(251, 191, 36, 0.3);
-  -webkit-tap-highlight-color: transparent;
   white-space: nowrap;
 }
 
@@ -247,7 +261,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s;
-  -webkit-tap-highlight-color: transparent;
   white-space: nowrap;
 }
 
@@ -269,6 +282,8 @@
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 2;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .StatItem {
@@ -331,7 +346,6 @@
   cursor: pointer;
   position: relative;
   border: 2px solid transparent;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .ServiceCard img {
@@ -404,12 +418,6 @@
   gap: 8px;
 }
 
-.ServiceButton img,
-.ServiceButton svg {
-  width: 16px;
-  height: 16px;
-}
-
 .ServiceButton:hover {
   color: #2563eb;
 }
@@ -441,7 +449,6 @@
   border: 1px solid #e2e8f0;
   transition: all 0.3s;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .QuickLinkCard:hover {
@@ -593,9 +600,13 @@
   margin: 0;
 }
 
+/* ============ УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ КОНТАКТОВ (СЕТКОЙ) ============ */
+
 .ContactsSection {
   margin-bottom: 64px;
   padding: 0 20px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .BranchesGrid {
@@ -603,6 +614,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 32px;
+  width: 100%;
 }
 
 .BranchCard {
@@ -615,7 +627,8 @@
   border: 1px solid #e2e8f0;
   transition: all 0.3s;
   cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  min-width: 0;
+  width: 100%;
 }
 
 .BranchCard:hover {
@@ -629,13 +642,21 @@
 }
 
 .BranchIcon {
-  font-size: 28px;
+  width: 8px;
+  height: 8px;
+  background: #fbbf24;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .BranchName {
   font-size: 14px;
   font-weight: 500;
   color: #1a202c;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+  flex: 1;
 }
 
 .MainOfficeCard {
@@ -647,6 +668,7 @@
   gap: 24px;
   border: 1px solid #e2e8f0;
   transition: all 0.3s;
+  width: 100%;
 }
 
 .MainOfficeCard:hover {
@@ -654,7 +676,7 @@
   border-color: #fbbf24;
 }
 
-.MainOfficeIcon  {
+.MainOfficeIcon {
   font-size: 48px;
   background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
   width: 80px;
@@ -673,6 +695,7 @@
 
 .MainOfficeContent {
   flex: 1;
+  min-width: 0;
 }
 
 .MainOfficeTitle {
@@ -680,12 +703,16 @@
   font-weight: 700;
   color: #1a202c;
   margin: 0 0 8px 0;
+  word-break: break-word;
 }
 
 .MainOfficeAddress {
   font-size: 14px;
   color: #64748b;
   margin: 0 0 16px 0;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.5;
 }
 
 .DetailsButton {
@@ -697,7 +724,7 @@
   cursor: pointer;
   padding: 0;
   transition: all 0.3s;
-  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
 }
 
 .DetailsButton:hover {
@@ -705,12 +732,11 @@
   transform: translateX(5px);
 }
 
-/* ============ ПЛАНШЕТЫ ============ */
+/* ============ АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ ============ */
 @media (max-width: 1024px) {
   .HeroContainer {
     flex-direction: column;
     gap: 24px;
-    width: 100%;
   }
   
   .Carousel {
@@ -719,25 +745,9 @@
     height: 300px;
   }
   
-  .CarouselSlide {
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-  }
-  
-  .CarouselImage {
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-  
   .Hero {
     padding: 40px 32px;
-    border-radius: 20px;
     margin-bottom: 48px;
-    width: 100%;
   }
   
   .HeroTitle {
@@ -770,21 +780,47 @@
     grid-template-columns: repeat(2, 1fr);
   }
   
-  .BranchesGrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
   .SectionTitle {
     font-size: 32px;
   }
   
-  .AdvantagesSection,
-  .ContactsSection {
-    padding: 0;
+  .CarouselButton {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    min-height: 38px;
+    font-size: 18px;
+  }
+  
+  /* Контакты на планшетах */
+  .BranchesGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  
+  .BranchCard {
+    padding: 16px 14px;
+  }
+  
+  .BranchName {
+    font-size: 13px;
+  }
+  
+  .MainOfficeCard {
+    padding: 28px 24px;
+    gap: 20px;
+  }
+  
+  .MainOfficeTitle {
+    font-size: 18px;
+  }
+  
+  .MainOfficeAddress {
+    font-size: 13px;
   }
 }
 
-/* ============ БОЛЬШИЕ ТЕЛЕФОНЫ ============ */
+/* ============ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ============ */
 @media (max-width: 768px) {
   .Main {
     padding: 0 12px;
@@ -793,70 +829,68 @@
   .HeroContainer {
     flex-direction: column;
     gap: 20px;
-    width: 100%;
   }
   
-  /* КРИТИЧЕСКИЕ ИСПРАВЛЕНИЯ ДЛЯ МОБИЛЬНЫХ */
   .Carousel {
     width: 100%;
     min-width: 100%;
-    max-width: 100%;
-    height: 280px;
+    height: 240px;
     border-radius: 16px;
-  }
-  
-  .CarouselContainer {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .CarouselSlide {
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: stretch;
   }
   
   .CarouselImage {
-    width: 100%;
-    height: 100%;
-    min-height: 280px;
-    max-height: 280px;
-    object-fit: cover;
-    object-position: center;
     border-radius: 16px;
-    display: block;
-    margin: 0;
-    padding: 0;
   }
   
-  .CarouselButton {
-    width: 32px;
-    height: 32px;
-    font-size: 18px;
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.6);
-  }
-  
-  .Carousel:hover .CarouselButton {
-    opacity: 0.7;
+  .CarouselIndicators {
+    bottom: 12px;
+    gap: 8px;
   }
   
   .Indicator {
     width: 8px;
     height: 8px;
+    min-width: 8px;
+    min-height: 8px;
+    max-width: 8px;
+    max-height: 8px;
   }
   
   .ActiveIndicator {
     width: 20px;
+    min-width: 20px;
+    max-width: 20px;
+  }
+  
+  .CarouselButton {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 16px;
+    opacity: 0.7;
+  }
+  
+  .CarouselButton {
+    opacity: 0.6;
+  }
+  
+  .Carousel:hover .CarouselButton {
+    opacity: 0.6;
+  }
+  
+  .PrevButton {
+    left: 8px;
+  }
+  
+  .NextButton {
+    right: 8px;
   }
   
   .Hero {
     padding: 32px 24px;
     border-radius: 16px;
     margin-bottom: 40px;
-    width: 100%;
   }
   
   .HeroTitle {
@@ -997,6 +1031,12 @@
     font-size: 18px;
   }
   
+  /* Контакты на телефонах - 2 колонки */
+  .ContactsSection {
+    margin-bottom: 48px;
+    padding: 0 12px;
+  }
+  
   .BranchesGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -1017,12 +1057,12 @@
     text-align: center;
     padding: 24px 20px;
     border-radius: 16px;
+    gap: 16px;
   }
   
   .MainOfficeIcon {
     width: 60px;
     height: 60px;
-    font-size: 32px;
     border-radius: 16px;
     margin: 0 auto;
   }
@@ -1036,16 +1076,13 @@
     font-size: 18px;
   }
   
-  .ServicesSection {
-    margin-bottom: 48px;
+  .MainOfficeAddress {
+    font-size: 13px;
+    margin-bottom: 12px;
   }
   
-  .AdvantagesSection {
-    margin-bottom: 48px;
-  }
-  
-  .ContactsSection {
-    margin-bottom: 48px;
+  .DetailsButton {
+    white-space: normal;
   }
 }
 
@@ -1055,76 +1092,55 @@
     padding: 0 8px;
   }
   
-  .HeroContainer {
-    width: 100%;
-    gap: 16px;
-  }
-  
-  /* САМЫЕ ВАЖНЫЕ ИСПРАВЛЕНИЯ */
   .Carousel {
-    width: 100%;
-    min-width: 100%;
-    max-width: 100%;
-    height: 250px;
+    height: 200px;
     border-radius: 12px;
-  }
-  
-  .CarouselContainer {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .CarouselSlide {
-    width: 100%;
-    min-width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: stretch;
   }
   
   .CarouselImage {
-    width: 100%;
-    height: 100%;
-    min-height: 250px;
-    max-height: 250px;
-    object-fit: cover;
-    object-position: center;
     border-radius: 12px;
-    display: block;
-    margin: 0;
-    padding: 0;
   }
   
-  .CarouselButton {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
-    opacity: 0.5;
-  }
-  
-  .Carousel:hover .CarouselButton {
-    opacity: 0.5;
+  .CarouselIndicators {
+    bottom: 10px;
+    gap: 6px;
   }
   
   .Indicator {
     width: 6px;
     height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    max-width: 6px;
+    max-height: 6px;
   }
   
   .ActiveIndicator {
     width: 16px;
+    min-width: 16px;
+    max-width: 16px;
   }
   
-  .CarouselIndicators {
-    bottom: 12px;
-    gap: 8px;
+  .CarouselButton {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 14px;
+  }
+  
+  .PrevButton {
+    left: 6px;
+  }
+  
+  .NextButton {
+    right: 6px;
   }
   
   .Hero {
     padding: 24px 16px;
     border-radius: 12px;
     margin-bottom: 32px;
-    width: 100%;
   }
   
   .HeroTitle {
@@ -1133,7 +1149,6 @@
   
   .HeroSubtitle {
     font-size: 15px;
-    line-height: 1.5;
   }
   
   .HeroActions {
@@ -1147,74 +1162,6 @@
     border-radius: 10px;
   }
   
-  .HeroStats {
-    gap: 20px;
-    margin-top: 28px;
-    padding-top: 20px;
-  }
-  
-  .StatValue {
-    font-size: 22px;
-  }
-  
-  .StatLabel {
-    font-size: 12px;
-  }
-  
-  .ServicesGrid {
-    gap: 12px;
-  }
-  
-  .ServiceCard {
-    padding: 20px 16px;
-    border-radius: 16px;
-  }
-  
-  .ServiceIcon {
-    font-size: 40px;
-    margin-bottom: 16px;
-  }
-  
-  .ServiceTitle {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  
-  .ServiceDescription {
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  
-  .UrgentBadge {
-    top: 12px;
-    right: 12px;
-    font-size: 11px;
-    padding: 3px 10px;
-  }
-  
-  .QuickLinksGrid {
-    gap: 10px;
-  }
-  
-  .QuickLinkCard {
-    padding: 16px;
-    border-radius: 12px;
-  }
-  
-  .QuickLinkCard img {
-    width: 28px;
-    height: 28px;
-  }
-  
-  .QuickLinkTitle {
-    font-size: 14px;
-  }
-  
-  .ContactBanner {
-    gap: 20px;
-    padding: 20px 16px;
-  }
-  
   .SectionTitle {
     font-size: 24px;
   }
@@ -1223,38 +1170,9 @@
     font-size: 14px;
   }
   
-  .SectionBadge {
-    font-size: 12px;
-    padding: 4px 12px;
-  }
-  
-  .AdvantagesGrid {
-    gap: 12px;
-  }
-  
-  .AdvantageCard {
-    padding: 20px 16px;
-    border-radius: 16px;
-  }
-  
-  .AdvantageIcon {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 12px;
-  }
-  
-  .AdvantageIcon img {
-    width: 25px;
-    height: 25px;
-  }
-  
-  .AdvantageTitle {
-    font-size: 16px;
-    margin-bottom: 8px;
-  }
-  
-  .AdvantageDescription {
-    font-size: 13px;
+  /* Контакты на маленьких телефонах - 2 колонки */
+  .ContactsSection {
+    padding: 0 8px;
   }
   
   .BranchesGrid {
@@ -1267,28 +1185,12 @@
     gap: 8px;
   }
   
-  .BranchIcon {
-    font-size: 24px;
-  }
-  
   .BranchName {
     font-size: 12px;
   }
   
   .MainOfficeCard {
     padding: 20px 16px;
-    gap: 16px;
-  }
-  
-  .MainOfficeIcon {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
-  }
-  
-  .MainOfficeIcon img {
-    width: 35px;
-    height: 35px;
   }
   
   .MainOfficeTitle {
@@ -1296,66 +1198,26 @@
   }
   
   .MainOfficeAddress {
-    font-size: 13px;
-    margin-bottom: 12px;
+    font-size: 12px;
   }
   
   .DetailsButton {
     font-size: 14px;
-  }
-  
-  .ServicesSection,
-  .AdvantagesSection,
-  .ContactsSection {
-    margin-bottom: 40px;
-  }
-}
-
-/* ============ ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ ============ */
-@media (max-width: 360px) {
-  .Carousel {
-    height: 200px;
-    border-radius: 10px;
-  }
-  
-  .CarouselImage {
-    min-height: 200px;
-    max-height: 200px;
-    border-radius: 10px;
-  }
-  
-  .HeroTitle {
-    font-size: 22px;
-  }
-  
-  .HeroSubtitle {
-    font-size: 13px;
-  }
-  
-  .PrimaryButton,
-  .SecondaryButton {
-    padding: 12px 16px;
-    font-size: 13px;
-  }
-  
-  .SectionTitle {
-    font-size: 20px;
-  }
-  
-  .BranchesGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  
-  .BranchCard {
-    padding: 12px 8px;
   }
 }
 
 /* ============ СЕНСОРНЫЕ УСТРОЙСТВА ============ */
 @media (hover: none) and (pointer: coarse) {
   .CarouselButton {
-    opacity: 0.6;
+    opacity: 0.7 !important;
+  }
+  
+  .CarouselButton:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  
+  .Indicator:active {
+    transform: scale(1.3);
   }
   
   .ServiceCard:hover,
@@ -1369,16 +1231,6 @@
   .QuickLinkCard:active,
   .BranchCard:active,
   .AdvantageCard:active {
-    transform: scale(0.97);
-  }
-  
-  .PrimaryButton:hover,
-  .SecondaryButton:hover {
-    transform: none;
-  }
-  
-  .PrimaryButton:active,
-  .SecondaryButton:active {
     transform: scale(0.97);
   }
 }

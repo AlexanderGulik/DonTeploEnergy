@@ -11,6 +11,7 @@ import tariffIcon from '../../../assets/icon-tariff.svg';
 import outagesIcon from '../../../assets/icon-exclamation.svg';
 import exitIcon from '../../../assets/icon-exit.svg';
 import profileIcon from '../../../assets/icon-profile.svg';
+import officeIcon from '../../../assets/icon-office.svg';
 
 const Header = ({ title = 'Главная' }) => {
   const navigate = useNavigate();
@@ -18,6 +19,22 @@ const Header = ({ title = 'Главная' }) => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState(null);
+
+  // Список филиалов
+  const branches = [
+    { id: 'amvrosievka', name: 'Филиал «Амвросиевкатеплосеть»', path: '/filial/amvrosievka' },
+     { id: 'volnovakha', name: 'Филиал «Волновахатеплосеть»', path: '/filial/volnovakha' },
+    { id: 'gorlovka', name: 'Филиал «Горловкатеплосеть»', path: '/filial/gorlovka' },
+    { id: 'donetsk', name: 'Филиал «Донецктеплосеть»', path: '/filial/donetsk' },
+    { id: 'enakievo', name: 'Филиал «Енакиевотеплосеть»', path: '/filial/enakievo' },
+    { id: 'makeevka', name: 'Филиал «Макеевкатеплосеть»', path: '/filial/makeevka' },
+    { id: 'novoazovsk', name: 'Филиал «Новоазовсктеплосеть»', path: '/filial/novoazovsk' },
+    { id: 'snezhnoye', name: 'Филиал «Снежноетеплосеть»', path: '/filial/snezhnoye' },
+    { id: 'kharcyzsk', name: 'Филиал «Харцызсктеплосеть»', path: '/filial/kharcyzsk' },
+    { id: 'shakhtersk', name: 'Филиал «Шахтерсктеплосеть»', path: '/filial/shakhtersk' },
+    { id: 'volnovakha', name: 'Филиал «Волновахатеплосеть»', path: '/filial/volnovakha' },
+    { id: 'mariupol', name: 'Филиал «Мариупольтеплосеть»', path: '/filial/mariupol' },
+  ];
 
   // Закрываем меню при ресайзе окна
   useEffect(() => {
@@ -94,6 +111,22 @@ const Header = ({ title = 'Главная' }) => {
               <Link to="/forms/emergency" className={styles.DropdownLink}>
                 <img src={emergencyIcon} alt="emergency"/> Аварийная заявка
               </Link>
+            </div>
+          </div>
+          
+          <div className={styles.Dropdown}>
+            <span className={styles.NavLink}>Филиалы ▼</span>
+            <div className={styles.DropdownContent}>
+              {branches.map((branch) => (
+                <Link 
+                  key={branch.id}
+                  to={branch.path}
+                  className={styles.DropdownLink}
+                  onClick={closeMobileMenu}
+                >
+                  <img src={officeIcon} alt="office"/> {branch.name}
+                </Link>
+              ))}
             </div>
           </div>
           
@@ -184,6 +217,29 @@ const Header = ({ title = 'Главная' }) => {
             <Link to="/forms/emergency" className={styles.MobileDropdownLink} onClick={closeMobileMenu}>
               <img src={emergencyIcon} alt="emergency"/> Аварийная заявка
             </Link>
+          </div>
+        </div>
+        
+        {/* Мобильное выпадающее меню - Филиалы */}
+        <div className={styles.MobileDropdown}>
+          <div 
+            className={styles.MobileDropdownTitle}
+            onClick={() => toggleMobileDropdown('branches')}
+          >
+            <span>Филиалы</span>
+            <span className={openMobileDropdown === 'branches' ? styles.ArrowOpen : styles.ArrowClosed}>▼</span>
+          </div>
+          <div className={`${styles.MobileDropdownContent} ${openMobileDropdown === 'branches' ? styles.open : ''}`}>
+            {branches.map((branch) => (
+              <Link
+                key={branch.id}
+                to={branch.path}
+                className={styles.MobileDropdownLink}
+                onClick={closeMobileMenu}
+              >
+                <img src={officeIcon} alt="office"/> {branch.name}
+              </Link>
+            ))}
           </div>
         </div>
         

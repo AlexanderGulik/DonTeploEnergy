@@ -38,7 +38,7 @@ func GenerateAdminRefreshToken(adminID int64) (string, error) {
 	claims := AdminRefreshClaims{
 		ID: adminID,
 		RegisteredClaims: jwt.RegisteredClaims{
-			ExpiresAt: jwt.NewNumericDate(time.Now().Add(7 * 24 * time.Hour)),
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(7 * 24 * time.Hour)), //
 			IssuedAt:  jwt.NewNumericDate(time.Now()),
 		},
 	}

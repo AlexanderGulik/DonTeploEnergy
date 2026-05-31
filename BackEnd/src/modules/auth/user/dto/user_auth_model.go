@@ -1,11 +1,5 @@
 package dto
 
-type UserDB struct {
-	ID       int64  `db: "id_user"`
-	Email    string `db:"email"`
-	Password string `db:"password_hash"`
-}
-
 type AdminRefreshTokenDB struct {
 	ID     int64  `db:"id"`
 	UserID int64  `db:"id_user"`

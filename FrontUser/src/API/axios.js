@@ -7,7 +7,7 @@ const instance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // ВАЖНО: для отправки cookies с refresh token
+  withCredentials: true,
 });
 
 let isRefreshing = false;
@@ -58,18 +58,20 @@ instance.interceptors.response.use(
 
       try {
         const response = await axios.post(
-          `${HOST}/auth/refresh`,
+          `${HOST}/auth/refresh-user`,
           {},
           { withCredentials: true }
         );
         
-        if (response.data.accessToken) {
-          localStorage.setItem('token', response.data.accessToken);
-          
-          processQueue(null, response.data.accessToken);
-          
-          originalRequest.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        const newToken = response.data.accessToken || response.data.access_token;
+        
+        if (newToken) {
+          localStorage.setItem('token', newToken);
+          processQueue(null, newToken);
+          originalRequest.headers.Authorization = `Bearer ${newToken}`;
           return instance(originalRequest);
+        } else {
+          throw new Error('No token in refresh response');
         }
       } catch (refreshError) {
         processQueue(refreshError, null);

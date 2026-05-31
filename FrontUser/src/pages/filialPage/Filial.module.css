@@ -1,0 +1,879 @@
+/* Карта */
+.MapSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.MapContainer {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.MapFrame {
+  width: 100%;
+  height: 400px;
+  border: none;
+  display: block;
+}
+
+.MapButton {
+  background: none;
+  border: none;
+  color: #fbbf24;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 8px;
+  transition: color 0.2s;
+}
+
+.MapButton:hover {
+  color: #f59e0b;
+  text-decoration: underline;
+}
+
+.OpenMapButton {
+  background: transparent;
+  border: 2px solid #fbbf24;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fbbf24;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+  max-width: 250px;
+  display: block;
+  margin: 0 auto;
+}
+
+.OpenMapButton:hover {
+  background: #fbbf24;
+  color: white;
+}
+
+.AdditionalPhone {
+  font-size: 14px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.EmergencyAdditionalPhone {
+  font-size: 18px;
+  font-weight: 600;
+  color: #dc2626;
+  margin-top: 8px;
+}
+
+/* Адаптация для карты на мобильных */
+@media (max-width: 768px) {
+  .MapFrame {
+    height: 250px;
+  }
+  
+  .MapContainer {
+    border-radius: 12px;
+  }
+  
+  .OpenMapButton {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .MapFrame {
+    height: 200px;
+  }
+}
+/* Пункты приема абонентов */
+.AbonentsPointsSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.AbonentsPointsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.AbonentsPointCard {
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 16px;
+  border-left: 4px solid #fbbf24;
+  transition: all 0.3s;
+}
+
+.AbonentsPointCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.AbonentsPointDistrict {
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.AbonentsPointAddress {
+  font-size: 14px;
+  color: #4a5568;
+  margin-bottom: 8px;
+}
+
+.AbonentsPointPhone {
+  font-size: 14px;
+  color: #fbbf24;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.AbonentsPointNote {
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .AbonentsPointsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.FilialPage {
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* Навигация */
+.Navigation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+.NavLink {
+  background: none;
+  border: none;
+  color: #3182ce;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.NavLink:hover {
+  color: #2c5282;
+  text-decoration: underline;
+}
+
+.Separator {
+  color: #a0aec0;
+}
+
+.CurrentPage {
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Заголовок */
+.Header {
+  background: linear-gradient(135deg, #1a365d 0%, #2b4c7c 100%);
+  border-radius: 24px;
+  padding: 40px 48px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.Header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.LogoSection {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.LogoIcon {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.LogoIcon img {
+  width: 40px;
+  height: 40px;
+  filter: brightness(0) invert(1);
+}
+
+.CompanyName {
+  font-size: 14px;
+  opacity: 0.8;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.BranchTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.NavButtons {
+  display: flex;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.NavArrow {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  transition: all 0.3s;
+}
+
+.NavArrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Секции */
+.SectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #fbbf24;
+  display: inline-block;
+}
+
+/* Контакты */
+.ContactSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ContactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.ContactCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+
+.ContactCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-color: #fbbf24;
+}
+
+.ContactIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ContactIcon img {
+  width: 24px;
+  height: 24px;
+}
+
+.ContactCard h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  margin: 0 0 8px 0;
+}
+
+.ContactCard p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a202c;
+  margin: 0;
+  word-break: break-word;
+}
+
+/* Руководство */
+.ManagementSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.DirectorCard {
+  display: flex;
+  gap: 32px;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.DirectorIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.DirectorIcon img {
+  width: 48px;
+  height: 48px;
+}
+
+.DirectorInfo {
+  flex: 1;
+}
+
+.DirectorInfo h3 {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.DirectorName {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 20px 0;
+}
+
+.ReceptionHours {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.HoursItem {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.HoursLabel {
+  font-weight: 600;
+  color: #4a5568;
+  display: inline-block;
+  min-width: 180px;
+}
+
+/* Цифры и факты */
+.FactsSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.FactsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.FactCard {
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 16px;
+  border-left: 4px solid #fbbf24;
+}
+
+.FactText {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #4a5568;
+  margin: 0;
+}
+
+/* Виды деятельности */
+.ActivitiesSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ActivitiesList {
+  list-style: none;
+  padding: 0;
+}
+
+.ActivitiesList li {
+  padding: 12px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 15px;
+  color: #4a5568;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ActivitiesList li:last-child {
+  border-bottom: none;
+}
+
+.ActivitiesList li::before {
+  content: "•";
+  color: #fbbf24;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+
+/* Перспективы развития */
+.DevelopmentSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.DevelopmentContent p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+
+.DevelopmentList {
+  list-style: none;
+  padding: 0;
+}
+
+.DevelopmentList li {
+  padding: 10px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 15px;
+  color: #4a5568;
+}
+
+.DevelopmentList li::before {
+  content: "→";
+  color: #fbbf24;
+  position: absolute;
+  left: 0;
+  top: 10px;
+}
+
+/* Аварийная служба */
+.EmergencySection {
+  margin-bottom: 32px;
+}
+
+.EmergencyCard {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid #fca5a5;
+}
+
+.EmergencyIcon {
+  width: 64px;
+  height: 64px;
+  background: #ef4444;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.EmergencyIcon img {
+  width: 36px;
+  height: 36px;
+  filter: brightness(0) invert(1);
+}
+
+.EmergencyCard h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #991b1b;
+  margin: 0 0 8px 0;
+}
+
+.EmergencyPhone {
+  font-size: 28px;
+  font-weight: 700;
+  color: #dc2626;
+  margin: 0;
+}
+
+/* Вакансии */
+.VacanciesSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.VacanciesIntro {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a202c;
+  margin-bottom: 20px;
+}
+
+.VacanciesList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.VacanciesList li {
+  padding: 8px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 14px;
+  color: #4a5568;
+}
+
+.VacanciesList li::before {
+  content: "▹";
+  color: #fbbf24;
+  position: absolute;
+  left: 0;
+}
+
+.VacanciesContact {
+  font-size: 14px;
+  color: #64748b;
+  padding-top: 16px;
+  border-top: 1px solid #e2e8f0;
+  margin: 0;
+}
+
+/* Пункты приема абонентов */
+.AbonentsSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.AbonentsCard {
+  padding: 24px;
+  background: #fef3c7;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.AbonentsText {
+  font-size: 15px;
+  color: #92400e;
+  margin: 0;
+}
+
+/* Новости */
+.NewsSection {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.NewsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.NewsCard {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: #f7fafc;
+  border-radius: 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.NewsCard:hover {
+  transform: translateX(8px);
+  background: #fef3c7;
+}
+
+.NewsIcon {
+  width: 48px;
+  height: 48px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.NewsIcon img {
+  width: 24px;
+  height: 24px;
+}
+
+.NewsContent {
+  flex: 1;
+}
+
+.NewsDate {
+  font-size: 12px;
+  color: #64748b;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.NewsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a202c;
+  margin: 0 0 8px 0;
+}
+
+.NewsButton {
+  background: none;
+  border: none;
+  color: #fbbf24;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.NewsButton:hover {
+  color: #f59e0b;
+}
+
+.AllNewsButton {
+  background: transparent;
+  border: 2px solid #fbbf24;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fbbf24;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+.AllNewsButton:hover {
+  background: #fbbf24;
+  color: white;
+}
+
+/* ============ АДАПТАЦИЯ ============ */
+
+@media (max-width: 1024px) {
+  .FilialPage {
+    padding: 0 12px;
+  }
+  
+  .ContactGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .FactsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .VacanciesList {
+    grid-template-columns: 1fr;
+  }
+  
+  .Header {
+    padding: 32px 28px;
+  }
+  
+  .BranchTitle {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .FilialPage {
+    padding: 0 8px;
+  }
+  
+  .Header {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px 20px;
+  }
+  
+  .LogoSection {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .BranchTitle {
+    font-size: 20px;
+  }
+  
+  .SectionTitle {
+    font-size: 22px;
+  }
+  
+  .ContactGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .DirectorCard {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .DirectorIcon {
+    margin: 0 auto;
+  }
+  
+  .HoursItem {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .HoursLabel {
+    min-width: auto;
+  }
+  
+  .EmergencyPhone {
+    font-size: 22px;
+  }
+  
+  .NavButtons {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .Navigation {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Header {
+    padding: 20px 16px;
+  }
+  
+  .BranchTitle {
+    font-size: 18px;
+  }
+  
+  .CompanyName {
+    font-size: 12px;
+  }
+  
+  .LogoIcon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .LogoIcon img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .NavArrow {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  
+  .SectionTitle {
+    font-size: 20px;
+  }
+  
+  .EmergencyPhone {
+    font-size: 18px;
+  }
+  
+  .EmergencyCard {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .NewsCard {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .NewsIcon {
+    margin: 0 auto;
+  }
+}

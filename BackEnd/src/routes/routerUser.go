@@ -33,7 +33,7 @@ import (
 	selectProfileCtrl "donTeploenergo/src/modules/profile/select"
 	changePasswordCtrl "donTeploenergo/src/modules/profile/changePassword"
 	updateUserCtrl "donTeploenergo/src/modules/users/update"
-
+	"donTeploenergo/src/middleware"
 	userCtrl "donTeploenergo/src/modules/users/select"
 	"net/http"
 )
@@ -75,47 +75,74 @@ func SetupUserRoutes(mux *http.ServeMux) {
 	takeFormCtrl := takeFormCtrl.NewFormTakeController()
 	updateFromCtrl := updateFromCtrl.NewFormUpdateController()
 
-	mux.HandleFunc("POST /api/auth/change-password", changePasswordCtrl.ChangePassword)
-	mux.HandleFunc("PUT /api/auth/profile/update", userUpdateCtrl.UpdateUserData) 
-	mux.HandleFunc("GET /api/auth/profile", selectProfileCtrl.GetProfile)
 	mux.HandleFunc("GET /api/applications", selectProfileCtrl.GetApplication)
 
 	mux.HandleFunc("GET /api/districts", selectDistrictCtrl.GetAll)
 
 	mux.HandleFunc("POST /api/forms/create", createFormCtrl.CreateForm)
 
-	mux.HandleFunc("POST /api/admin/form/chat/send", createMessageCtrl.CreateMessage)
-	mux.HandleFunc("GET /api/admin/form/{id}/chat", selectMessageCtrl.GetMessages)
 
-	mux.HandleFunc("POST /api/user/form/chat/send", createMessageCtrl.CreateMessageUser)
-	mux.HandleFunc("GET /api/user/form/{id}/chat", selectMessageCtrl.GetMessagesUser)
 
 	mux.HandleFunc("GET /api/tariffs", selectTariffCtrl.GetAll)
-	mux.HandleFunc("POST /api/tariffs/create", createTariffCtrl.CreateTariff)
-	mux.HandleFunc("PUT /api/tariffs/update/{id}", updateTariffCtrl.UpdateTariff)
-	mux.HandleFunc("DELETE /api/tariffs/delete/{id}", deleteTariffCtrl.DeleteTariff)
-
 	mux.HandleFunc("GET /api/outages", selectOutagesCtrl.GetAll)
-	mux.HandleFunc("POST /api/outages/create", createOutagesCtrl.CreateOutages)
-	mux.HandleFunc("PUT /api/outages/update/{id}", updateOutagesCtrl.UpdateOutages)
-	mux.HandleFunc("DELETE /api/outages/delete/{id}", deleteOutagesCtrl.DeleteOutages)
 
-	mux.HandleFunc("GET /api/admin/admin", selectAdminCtrl.SelectAdmin)
-	mux.HandleFunc("PUT /api/admin/admin/{id}", updateAdminCtrl.UpdateAdmin)
-	mux.HandleFunc("POST /api/admin/create", registerAdminCtrl.Register)
-	mux.HandleFunc("DELETE /api/admin/delete/{id}", deleteAdminCtrl.DeleteAdmin)
+	mux.Handle("POST /api/user/form/chat/send",middleware.UserAuthMiddleware(http.HandlerFunc( createMessageCtrl.CreateMessageUser),))
+	mux.Handle("GET /api/user/form/{id}/chat",middleware.UserAuthMiddleware(http.HandlerFunc( selectMessageCtrl.GetMessagesUser),))
+	mux.Handle("POST /api/auth/change-password",middleware.UserAuthMiddleware(http.HandlerFunc( changePasswordCtrl.ChangePassword),))
+	mux.Handle("PUT /api/auth/profile/update",middleware.UserAuthMiddleware(http.HandlerFunc( userUpdateCtrl.UpdateUserData),))
+	mux.Handle("GET /api/auth/profile",middleware.UserAuthMiddleware(http.HandlerFunc( selectProfileCtrl.GetProfile),))
 
-	mux.HandleFunc("GET /api/admin/form", selectFormCtrl.SelectForm)
-	mux.HandleFunc("POST /api/admin/form/take", takeFormCtrl.TakeForm)
-	mux.HandleFunc("PUT /api/admin/form/update", updateFromCtrl.UpdateForm)
+	//admin
+	mux.Handle("POST /api/outages/create",middleware.AdminAuthMiddleware( http.HandlerFunc( createOutagesCtrl.CreateOutages),))
+	mux.Handle("PUT /api/outages/update/{id}",middleware.AdminAuthMiddleware(http.HandlerFunc( updateOutagesCtrl.UpdateOutages), ))
+	mux.Handle("DELETE /api/outages/delete/{id}",middleware.AdminAuthMiddleware(http.HandlerFunc(  deleteOutagesCtrl.DeleteOutages),))
 
-	mux.HandleFunc("GET /api/admin/user", userCtrl.GetAll)
-	mux.HandleFunc("GET /api/admin/statistic", statisticCtrl.GetStatistic)
+	mux.Handle("POST /api/tariffs/create",middleware.AdminAuthMiddleware(http.HandlerFunc(createTariffCtrl.CreateTariff),))
+	mux.Handle("PUT /api/tariffs/update/{id}", middleware.AdminAuthMiddleware(	
+		http.HandlerFunc(updateTariffCtrl.UpdateTariff),
+))
+	mux.Handle("DELETE /api/tariffs/delete/{id}",middleware.AdminAuthMiddleware(http.HandlerFunc( deleteTariffCtrl.DeleteTariff),))
+    mux.Handle("POST /api/admin/form/chat/send", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(createMessageCtrl.CreateMessage),
+    ))
+    mux.Handle("GET /api/admin/form/{id}/chat", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(selectMessageCtrl.GetMessages),
+    ))
+    mux.Handle("GET /api/admin/admin", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(selectAdminCtrl.SelectAdmin),
+    ))
+    mux.Handle("PUT /api/admin/admin/{id}", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(updateAdminCtrl.UpdateAdmin),
+    ))
+    mux.Handle("POST /api/admin/create", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(registerAdminCtrl.Register),
+    ))
+    mux.Handle("DELETE /api/admin/delete/{id}", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(deleteAdminCtrl.DeleteAdmin),
+    ))
+    mux.Handle("GET /api/admin/form", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(selectFormCtrl.SelectForm),
+    ))
+    mux.Handle("POST /api/admin/form/take", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(takeFormCtrl.TakeForm),
+    ))
+    mux.Handle("PUT /api/admin/form/update", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(updateFromCtrl.UpdateForm),
+    ))
+    mux.Handle("GET /api/admin/user", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(userCtrl.GetAll),
+    ))
+    mux.Handle("GET /api/admin/statistic", middleware.AdminAuthMiddleware(
+        http.HandlerFunc(statisticCtrl.GetStatistic),
+    ))
 
+
+	mux.HandleFunc("POST /api/auth/refresh-admin", authAdminCtrl.RefreshToken)
 	mux.HandleFunc("POST /api/auth/login", authAdminCtrl.Login)
 	mux.HandleFunc("POST /api/auth/logout", authAdminCtrl.Logout)
 	mux.HandleFunc("POST /api/auth/register", authAdminCtrl.Register)
 
+	mux.HandleFunc("POST /api/auth/refresh-user", authUserCtrl.RefreshToken)
 	mux.HandleFunc("POST /api/auth/login-user", authUserCtrl.Login)
 	mux.HandleFunc("POST /api/auth/logout-user", authUserCtrl.Logout)
 	mux.HandleFunc("POST /api/auth/register-user", authUserCtrl.Register)

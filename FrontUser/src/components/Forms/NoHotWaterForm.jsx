@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { form_create} from '../../API/FormService.js';
+import React, { useState, useEffect } from 'react';
+import { form_create } from '../../API/FormService.js';
 import styles from './FormStyles.module.css';
-
-import Alert, {showAlert} from '../UI/Alert/Alert.jsx';
-
+import Alert, { showAlert } from '../UI/Alert/Alert.jsx';
 import waterIcon from '../../assets/icon-water.svg';
 import clockIcon from '../../assets/icon-clock.svg';
+
 const NoHotWaterForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -15,7 +14,32 @@ const NoHotWaterForm = () => {
     description: ''
   });
 
-  const form_type = "nowatter"
+  const form_type = "nowatter";
+
+  // Загружаем данные пользователя из localStorage
+  useEffect(() => {
+    try {
+      const store = localStorage.getItem('store');
+      if (store) {
+        const parsedStore = JSON.parse(store);
+        const user = parsedStore?.user;
+        
+        if (user) {
+          // Формируем ФИО
+          const fullName = `${user.lastName || ''} ${user.firstName || ''}`.trim();
+          
+          setFormData(prev => ({
+            ...prev,
+            name: fullName || '',
+            address: user.address || '',
+            phone: user.phone || ''
+          }));
+        }
+      }
+    } catch (error) {
+      console.error('Ошибка загрузки данных пользователя:', error);
+    }
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,12 +50,10 @@ const NoHotWaterForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const userId = 1;
-
     try {
-        const token = localStorage.getItem('token');
+      const token = localStorage.getItem('token');
       if (!token) {
-        showAlert('войдите в аккаунт','error', 6000);
+        showAlert('Войдите в аккаунт', 'error', 6000);
         return;
       }
 
@@ -43,7 +65,11 @@ const NoHotWaterForm = () => {
       );
       
       showAlert('Заявка принята!', 'success', 6000);
-      setFormData({ name: '', address: '', phone: '', description: '' });
+      setFormData(prev => ({ 
+        ...prev, 
+        address: '', 
+        description: '' 
+      }));
       
     } catch (error) {
       console.error('Ошибка отправки:', error);
@@ -59,7 +85,7 @@ const NoHotWaterForm = () => {
         <div className={styles.HeaderIcon} style={{ 
           boxShadow: '0 4px 12px rgba(52, 152, 219, 0.2)'
         }}>
-          <img src = {waterIcon}/>
+          <img src={waterIcon} alt="water" />
         </div>
         <div className={styles.HeaderText}>
           <h2 className={styles.FormTitle}>Заявка на отсутствие горячей воды</h2>
@@ -155,13 +181,13 @@ const NoHotWaterForm = () => {
             </>
           ) : (
             <>
-               Отправить заявку
+              Отправить заявку
             </>
           )}
         </button>
 
         <p className={styles.InfoNote}>
-          <img src = {clockIcon}/> Среднее время обработки заявки — до 2 часов.
+          <img src={clockIcon} alt="clock" /> Среднее время обработки заявки — до 2 часов.
         </p>
       </form>
     </div>
