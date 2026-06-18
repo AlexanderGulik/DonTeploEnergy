@@ -62,7 +62,6 @@
 
 <img width="2854" height="2666" alt="www dontploenergo ru_login (1)" src="https://github.com/user-attachments/assets/aea8e939-8fac-41b3-b6e5-f37673d4d5a0" />
 
-<img width="2854" height="2554" alt="www dontploenergo ru_login (2)" src="https://github.com/user-attachments/assets/b1411730-f6ef-4ab1-8f6a-f0c0bb23a141" />
 
 ### Для администратора
 
